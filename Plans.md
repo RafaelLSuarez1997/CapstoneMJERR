@@ -33,3 +33,20 @@ Administrator
     #view, all products so you can add,edit and delete them
     #control item status(make availible)
     #allow multiple payments?
+
+
+User {
+  id       Int     @id @default(autoincrement())
+  username String  @unique
+  password String
+  shoes    Shoe[]  // Add a relation to the Shoe model
+}
+
+model items {
+  id          Int    @id @default(autoincrement())
+  brand       String
+  category       String
+  size        Float
+  userId      Int
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

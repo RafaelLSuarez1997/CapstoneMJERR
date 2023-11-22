@@ -11,16 +11,16 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  username String @unique
+  id       Int     @id @default(autoincrement())
+  username String  @unique
   password String
-  tasks    Task[]
+  items    Items[]  // Add a relation to the Shoe model
 }
-
-model Task {
-  id          Int     @id @default(autoincrement())
-  description String
-  done        Boolean @default(false)
+model Items {
+  id          Int    @id @default(autoincrement())
+  brand       String
+  category    String
+  size        Float
   userId      Int
-  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
