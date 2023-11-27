@@ -1,30 +1,25 @@
-// const prisma = require("../prisma");
-
-// /** Seeds the database with a user and some tasks */
-// const seed = async () => {
-//   await prisma.user.upsert({
-//     where: {
-//       username: "foo",
-//     },
-//     update: {},
-//     create: {
-//       username: "foo",
-//       password: "bar",
-//       tasks: {
-//         create: [
-//           { description: "task 1" },
-//           { description: "task 2" },
-//           { description: "task 3" },
-//         ],
-//       },
-//     },
-//   });
-// };
-
-// seed()
-//   .then(async () => await prisma.$disconnect())
-//   .catch(async (err) => {
-//     console.error(err);
-//     await prisma.$disconnect();
-//     process.exit(1);
-//   });
+const prisma = require("../prisma");
+const mockShoes = [
+  {
+    brand: "Nike",
+    category: "Mens shoes",
+    size: "7",
+  },
+  {
+    brand: "Adidas",
+    category: "Women shoes",
+    size: "6",
+  },
+]
+const seed = async () => {
+for (shoe of mockShoes) {
+await prisma.shoes.create({ data: shoe })
+}
+};
+seed()
+  .then(async () => await prisma.$disconnect())
+  .catch(async (err) => {
+    console.error(err);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
