@@ -13,9 +13,9 @@ model User {
   username String @unique
   password String
 }
-model Shoes {
+model Items {
   id       Int    @id @default(autoincrement())
   brand    String
   category String
-  size     String
+  size     Float
 }

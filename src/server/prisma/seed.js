@@ -1,19 +1,19 @@
 const prisma = require("../prisma");
-const mockShoes = [
+const mockdata = [
   {
     brand: "Nike",
     category: "Mens shoes",
-    size: "7",
+    size: 7.5,
   },
   {
     brand: "Adidas",
     category: "Women shoes",
-    size: "6",
+    size: 6,
   },
 ]
 const seed = async () => {
-for (shoe of mockShoes) {
-await prisma.shoes.create({ data: shoe })
+for (item of mockdata) {
+await prisma.items.create({ data: item })
 }
 };
 seed()
