@@ -15,13 +15,16 @@ export default function MainItems() {
         <h2>Featured Item</h2>
         <table>
           <tbody>
-             {items.map((item) => (
+             {items.map((item) => ( 
+              <Link to={`/${item.id}`}> 
               <tr key={item.id}>
                 <td>{item.brand}</td>
                 <td>{item.category}</td>
                 <td>{item.size}</td>
                 <img src={item.imageUrl} />
+             
               </tr>
+              </Link>
             ))}
           </tbody>
         </table>
