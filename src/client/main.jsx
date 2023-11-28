@@ -12,6 +12,7 @@ import Root from "./layout/Root.jsx";
 import SingleItem from "./features/items/SingleItem.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 const router = createBrowserRouter([
   {
     path: "/",
