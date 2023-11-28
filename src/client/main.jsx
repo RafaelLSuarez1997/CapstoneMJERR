@@ -12,12 +12,13 @@ import Root from "./layout/Root.jsx";
 import SingleItem from "./features/items/SingleItem.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import MainItems from "./features/items/mainItems.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
-      { path: "/", element: <Items /> },
+      { path: "/", element: <MainItems /> },
       { path: "/:id", element: <SingleItem /> },
       { path: "/login", element: <AuthForm /> },
     ],
