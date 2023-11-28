@@ -22,7 +22,7 @@ const mockdata = [
     imageUrl: "https://th.bing.com/th/id/OIP.IaLGIFIJJpFlhA_eTarCEAHaIq?rs=1&pid=ImgDetMain",
     size: 8.5,
     price: 85,
-    description: ,
+    description: "",
   },
   {
     brand: "Nike",
@@ -30,7 +30,7 @@ const mockdata = [
     imageUrl: "https://th.bing.com/th/id/OIP.IaLGIFIJJpFlhA_eTarCEAHaIq?rs=1&pid=ImgDetMain",
     size: 6,
     price: 65,
-    description: ,
+    description: "" ,
   },
 ]
 const seed = async () => {
