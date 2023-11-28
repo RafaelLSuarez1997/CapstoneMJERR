@@ -3,13 +3,13 @@ const mockdata = [
   {
     brand: "Nike",
     category: "Mens shoes",
-    imageUrl: "https://images.app.goo.gl/x7njWd9AhDxEF3Vy8",
+    imageUrl: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/d706b6dd-32a7-4ed9-81c9-c0808624807c/dunk-low-retro-mens-shoes-njHwD3.png",
     size: 7.5,
   },
   {
     brand: "Adidas",
     category: "Women shoes",
-    imageUrl: "https://images.app.goo.gl/x7njWd9AhDxEF3Vy8",
+    imageUrl: "https://th.bing.com/th/id/OIP.IaLGIFIJJpFlhA_eTarCEAHaIq?rs=1&pid=ImgDetMain",
     size: 6,
   },
 ]

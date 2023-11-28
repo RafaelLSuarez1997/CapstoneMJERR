@@ -9,6 +9,7 @@ import store from "./store";
 import AuthForm from "./features/auth/AuthForm";
 import Items from "./features/items/Items.jsx";
 import Root from "./layout/Root.jsx";
+import SingleItem from "./features/items/SingleItem.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { path: "/", element: <Items /> },
-      { path: "/items", element: <Items /> },
+      { path: "/:id", element: <SingleItem /> },
       { path: "/login", element: <AuthForm /> },
     ],
   },
