@@ -19,8 +19,20 @@ router.get("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
 
-    const item = await prisma.item.findUnique({ where: { id } });
+    const item = await prisma.items.findUnique({ where: { id } });
     res.json(item);
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+// contact route
+router.post("/contact", async (req, res, next) => {
+  try {
+    const { name, email, message } = req.body;
+
+    res.send("Thank you for your message! We'll be in touch soon.")
   } catch (err) {
     next(err);
   }
