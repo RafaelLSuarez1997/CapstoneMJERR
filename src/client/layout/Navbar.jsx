@@ -1,8 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, selectToken } from "../features/auth/authSlice";
+import ContactUs from "../features/items/ContactUs";
 
 import "./Navbar.less";
+
 
 /**
  * A simple navigation bar that displays "Log In" if the user is not logged in,
