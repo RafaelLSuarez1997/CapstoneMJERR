@@ -19,7 +19,7 @@ router.get("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
 
-    const item = await prisma.item.findUnique({ where: { id } });
+    const item = await prisma.items.findUnique({ where: { id } });
     res.json(item);
   } catch (err) {
     next(err);

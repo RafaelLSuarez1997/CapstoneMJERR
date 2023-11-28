@@ -9,14 +9,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 model User {
-  id       Int    @id @default(autoincrement())
+  userId       Int    @id @default(autoincrement())
   username String @unique
   password String
 }
 model Items {
-  id       Int    @id @default(autoincrement())
-  brand    String
-  category String
-  imageUrl String
-  size     Float
+  id          Int    @id @default(autoincrement())
+  brand       String
+  price       Int
+  description String
+  category    String
+  imageUrl    String
+  size        Float
 }
