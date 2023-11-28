@@ -3,11 +3,13 @@ const mockdata = [
   {
     brand: "Nike",
     category: "Mens shoes",
+    imageUrl: "https://images.app.goo.gl/x7njWd9AhDxEF3Vy8",
     size: 7.5,
   },
   {
     brand: "Adidas",
     category: "Women shoes",
+    imageUrl: "https://images.app.goo.gl/x7njWd9AhDxEF3Vy8",
     size: 6,
   },
 ]
