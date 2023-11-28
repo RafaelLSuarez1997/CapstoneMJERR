@@ -1,6 +1,8 @@
 import { useGetItemsQuery } from "./itemSlice";
 import React from "react";
 import { Link } from "react-router-dom";
+import "./items.less";
+
 
 export default function Items() {
     const { data: items, isLoading } = useGetItemsQuery();
@@ -13,16 +15,19 @@ export default function Items() {
       <div>
         <h2>List of Items</h2>
         <table>
-          <tbody>
-            {items.map((item) => (
-              <tr key={item.id}>
-                <td>{item.brand}</td>
-                <td>{item.category}</td>
-                <td>{item.size}</td>
-              </tr>
-            ))}
-          </tbody>
+          {items.map((item) => (
+            <tr key={item.id}>
+              <td>
+                <Link to={`/${item.id}`}>
+                  <img src={item.imageUrl} alt={item.brand} />
+                  <td>{item.brand}</td>
+                  <td>{item.category}</td>
+                  <td>{item.size}</td>
+                </Link>
+              </td>
+            </tr>
+          ))}
         </table>
       </div>
     );
-  }
+}
