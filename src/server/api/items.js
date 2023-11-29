@@ -25,3 +25,15 @@ router.get("/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+
+// contact route
+router.post("/contact", async (req, res, next) => {
+  try {
+    const { name, email, message } = req.body;
+
+    res.send("Thank you for your message! We'll be in touch soon.")
+  } catch (err) {
+    next(err);
+  }
+});
