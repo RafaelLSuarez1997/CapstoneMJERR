@@ -22,3 +22,13 @@ model Items {
   price       Float
   description String
 }
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    Int      // You might associate the cart with a specific user
+  productId Int      // The ID of the product in the cart
+  quantity  Int      // The quantity of the product in the cart
+  size      Float    // The selected size for the product in the cart
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
