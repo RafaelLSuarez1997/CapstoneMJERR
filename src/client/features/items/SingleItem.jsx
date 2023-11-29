@@ -7,8 +7,7 @@ import "./Singleitem.less";
 export default function SingleItem() {
   const { id } = useParams();
   const { data: item, isLoading } = useGetItemQuery(id); 
-  const [selectedSize, setSelectedSize] = useState(0);
-  // console.log("Received item data:", item);
+  console.log("Received item data:", item);
 
 
   if (isLoading) {
@@ -18,10 +17,6 @@ export default function SingleItem() {
   if (!item) {
     return <p>Item not found</p>;
   }
-
-const handleSizeChange = (e) => {
-  setSelectedSize(e.target.value); //
-}
 
   return (
     <div className="single-item-container">

@@ -26,7 +26,6 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-
 // contact route
 router.post("/contact", async (req, res, next) => {
   try {

@@ -1,16 +1,14 @@
 // ContactUs.js
-
 import React, { useState } from 'react';
+import './ContactUs.less';
 
 const ContactUs = () => {
-  // State to manage form input values
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   });
 
-  // Event handler for form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -19,12 +17,10 @@ const ContactUs = () => {
     });
   };
 
-  // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Add logic here to handle form submission, such as sending an email or making an API request
     console.log('Form submitted:', formData);
-    // You can add additional logic here, e.g., sending the form data to a server
+    // Add additional logic for form submission, e.g., sending data to a server
   };
 
   return (
@@ -32,7 +28,6 @@ const ContactUs = () => {
       <h2>Contact Us</h2>
       <p>Feel free to reach out to us using the form below or through other contact information.</p>
 
-      {/* Contact form */}
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} />
