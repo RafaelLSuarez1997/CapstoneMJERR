@@ -9,6 +9,9 @@ const ContactUs = () => {
     message: '',
   });
 
+  // pop up message
+  const [showPopup, setShowPopup] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -20,8 +23,24 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
-    // Add additional logic for form submission, e.g., sending data to a server
+    
+    // 
+    setShowPopup(true);
+
+    // Reset form data
+    setFormData({
+      name: "",
+      email: "",
+      message: "",
+
+    })
+
   };
+
+  const closePopup = () => {
+    // hides pop-up message
+    setShowPopup(false);
+  }
 
   return (
     <div>
@@ -40,6 +59,14 @@ const ContactUs = () => {
 
         <button type="submit">Submit</button>
       </form>
+
+        {/* Popup message */}
+          {showPopup && (
+        <div className="popup">
+          <p>Thank you for your message! We'll be in touch soon.</p>
+          <button onClick={closePopup}>Close</button>
+        </div>
+          )}
     </div>
   );
 };
