@@ -4,10 +4,6 @@ import { logout, selectToken } from "../features/auth/authSlice";
 
 import "./Navbar.less";
 
-/**
- * A simple navigation bar that displays "Log In" if the user is not logged in,
- * and "Log Out" if the user is logged in.
- */
 export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,7 +17,15 @@ export default function Navbar() {
 
   return (
     <nav className="top">
-      <h1>Shoe X</h1>
+      <div className="logo">
+        <h1>Shoe X</h1>
+      </div>
+      <div className="search-bar">
+        {/* Your search bar code goes here */}
+        <input type="text" placeholder="Search..." />
+        {/* You can add a search button if needed */}
+        {/* <button type="button">Search</button> */}
+      </div>
       <menu>
         <li>
           <NavLink to="/">Home</NavLink>

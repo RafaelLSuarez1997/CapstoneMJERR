@@ -12,22 +12,17 @@ export default function Items() {
     }
   
     return (
-      <div>
-        <h2>List of Items</h2>
-        <table>
-          {items.map((item) => (
-            <tr key={item.id}>
-              <td>
-                <Link to={`/${item.id}`}>
-                  <img src={item.imageUrl} alt={item.brand} />
-                  <td>{item.brand}</td>
-                  <td>{item.category}</td>
-                  <td>{item.size}</td>
-                </Link>
-              </td>
-            </tr>
-          ))}
-        </table>
+      <div className="items-container">
+        {items.map((item) => (
+          <Link to={`/${item.id}`} key={item.id} className="item-card">
+            <img src={item.imageUrl} alt={item.brand} className="item-image" />
+            <div className="item-details">
+              <p className="item-brand">{item.brand}</p>
+              <p className="item-category">{item.category}</p>
+              <p className="item-size">{item.price}</p>
+            </div>
+          </Link>
+        ))}
       </div>
     );
-}
+  }
