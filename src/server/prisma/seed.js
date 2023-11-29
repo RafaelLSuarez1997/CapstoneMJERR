@@ -50,7 +50,47 @@ const mockdata = [
   size: 8.5,
   price: 69.99,
   description: "Designed for your active lifestyle, Reebok fitness shoes offer a perfect blend of style and functionality. The lightweight design and flexible sole make them ideal for workouts and casual wear alike.",
-}
+},
+{
+  brand: "Nike",
+  category: "Walking Shoes",
+  imageUrl: "https://media.cnn.com/api/v1/images/stellar/prod/nike-motiva-shoe-product-card-cnnu.jpg?q=h_900,w_1600,x_0,y_0",
+  size: 12,
+  price: 99.99,
+  description: "Introducing the latest innovation in walking comfort, the Nike StrideMax Walk. Designed with a perfect blend of style and functionality, these walking shoes are crafted to enhance your every step with cutting-edge technology and sleek aesthetics.",
+},
+{
+  brand: "Adidas",
+  category: "Fitness shoes",
+  imageUrl: "https://assets.adidas.com/images/w_600,f_auto,q_auto/8a0b7112e93f467996b9af2e0091b8af_9366/Ultrabounce_Running_Shoes_White_HP5788_01_standard.jpg",
+  size: 10,
+  price: 79.99,
+  description: "Traction is a top priority, and the outsole of the WalkBoost Prime delivers on all fronts. Designed with a durable rubber compound and a carefully engineered tread pattern, these shoes offer exceptional grip on a variety of surfaces.",
+},
+{
+  brand: "Converse",
+  category: "Fitness shoes",
+  imageUrl: "https://media.rackroomshoes.com/img/events/2023/summer/blp/20230706-converse-cb--womens.jpg",
+  size: 11,
+  price: 39.99,
+  description: "Introducing the Converse WalkStar Classic, a timeless blend of iconic style and everyday comfort. Born from the heritage of the legendary Chuck Taylor All Star, these walking shoes embody Converse's legacy of cool, now optimized for your daily walking adventures.",
+},
+{
+  brand: "Nike",
+  category: "Running Shoes",
+  imageUrl: "https://static.nike.com/a/images/c_limit,w_592,f_auto/t_product_v1/5615d881-6725-422a-b97b-82835fa62411/ja-1-wet-cement-basketball-shoes-bCx2W3.png",
+  size: 10,
+  price: 59.99,
+  description: "Traction is key when it comes to a reliable walking shoe, and the outsole of the StrideMax Walk doesn't disappoint. Featuring a durable rubber compound with a multidirectional tread pattern, these shoes offer exceptional grip on various surfaces, ensuring stability and confidence in each step.",
+},
+{
+  brand: "Adidas",
+  category: "Women shoes",
+  imageUrl: "https://assets.bwbx.io/images/users/iqjWHBFdfxIU/i99RDk1ZU0CA/v2/-1x-1.jpg",
+  size: 8.5,
+  price: 39.99,
+  description: "The upper of the Adidas WalkBoost Prime is crafted from a breathable and flexible knit material, providing optimal ventilation to keep your feet cool and comfortable during your walks. The sock-like construction ensures a snug and adaptive fit, wrapping your feet in a supportive embrace.",
+},
 
 ];
 
