@@ -23,7 +23,14 @@ export default function Navbar() {
 
   return (
     <nav className="top">
-      <h1>Shoe X</h1>
+      <div className="logo">
+        <h1>Shoe X</h1>
+      </div>
+      <div className="search-bar">
+        <input type="text" placeholder="Search..." />
+
+
+      </div>
       <menu>
         <li>
           <NavLink to="/">Home</NavLink>
