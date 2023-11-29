@@ -44,6 +44,7 @@ export default function SingleItem() {
         <p>Price: ${item.price}</p>
         <p>Description: {item.description}</p>
       </div>
+      <button className="addtocartbutton" onClick={ () => addToCart (items.id)}> Add to Cart </button>
     </div>
   );
 }
