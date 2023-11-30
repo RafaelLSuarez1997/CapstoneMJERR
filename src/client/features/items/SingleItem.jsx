@@ -4,7 +4,7 @@ import { useGetItemQuery, useGetItemsQuery } from "./itemSlice";
 import "./Singleitem.less";
 
 import { ShopContext } from "../cart/ShopContext";
-import { Link } from "react-router-dom";
+
 
 export default function SingleItem() {
   const { id } = useParams();
@@ -67,6 +67,9 @@ export default function SingleItem() {
           <button className="addtocartbutton" onClick={handleAddToCart}>
             Add to Cart
           </button>
+          <Link to = "/">
+            <button className="continuebutton">Continue Shopping</button>
+          </Link>
         </div>
       </div>
       <div className="recommended-items">
@@ -79,14 +82,6 @@ export default function SingleItem() {
           </Link>
         ))}
       </div>
-      <button className="addtocartbutton" onClick={handleAddToCart}>
-        Add to Cart
-      </button>
-      <br />
-      <br />
-      <Link to="/">
-        <button>Continue Shopping</button>
-      </Link>
     </div>
   );
 
