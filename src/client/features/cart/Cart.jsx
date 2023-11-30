@@ -1,9 +1,14 @@
 import React, { useContext } from 'react';
-import { ShopContext } from '../cart/ShopContext';
-import { useGetItemQuery } from '../items/itemSlice';
+import { ShopContext } from './ShopContext';
+import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
+
 
 function Cart() {
-  const { cartItems } = useContext(ShopContext);
+  const { cartItems, removeFromCart } = useContext(ShopContext);
+  
+  const onDelete = async (itemId) => {
+   removeFromCart(itemId)
+  }
 
   return (
     <div>
@@ -33,6 +38,7 @@ function Cart() {
                 <p>Brand: {item.brand}</p>
                 <p>Size: {size}</p>
                 <p>Quantity: {quantity}</p>
+                <button onClick={() => onDelete(itemId)}>Remove from Cart</button>
               </div>
             </li>
           );
