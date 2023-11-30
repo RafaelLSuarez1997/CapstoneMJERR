@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     path: "/",
     element: ( 
     <ShopContextProvider>
-    <Root />,
+    <Root />
     </ShopContextProvider>
     ),
     children: [
