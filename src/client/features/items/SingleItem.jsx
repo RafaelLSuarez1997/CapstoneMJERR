@@ -2,16 +2,16 @@ import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useGetItemQuery } from "./itemSlice"; 
 import "./Singleitem.less";
-//
+
 import { ShopContext } from "../cart/ShopContext";
 
 export default function SingleItem() {
   const { id } = useParams();
-  //
+  
   
   const { data: item, isLoading } = useGetItemQuery(id); 
   const [ selectedSize, setSelectedSize ] = useState(0);
-  //
+  
   const { addToCart } = useContext(ShopContext);
   console.log("Received item data:", item);
 
@@ -19,7 +19,7 @@ export default function SingleItem() {
     setSelectedSize(e.target.value); 
   }
   
-  // 
+  
   const handleAddToCart = () => {
     addToCart(item.id);
   }
@@ -60,3 +60,5 @@ export default function SingleItem() {
     </div>
   );
 }
+
+
