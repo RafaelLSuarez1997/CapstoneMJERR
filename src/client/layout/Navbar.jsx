@@ -1,11 +1,11 @@
+import React, {useContext} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, selectToken } from "../features/auth/authSlice";
 import ContactUs from "../features/items/ContactUs";
-
-
+import { ShopContext } from "../features/cart/ShopContext";
 import { ShoppingCart } from "phosphor-react";
-
+import Cart from "../features/cart/Cart";
 import "./Navbar.less";
 
 
@@ -16,7 +16,7 @@ import "./Navbar.less";
 export default function Navbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { cartCount } = useContext(ShopContext);
   const token = useSelector(selectToken);
 
   const handleLogout = async () => {
@@ -51,7 +51,7 @@ export default function Navbar() {
           </li>
         )}
         <li>
-          <NavLink to="/cart"><ShoppingCart size={20}/></NavLink>
+          <NavLink to="/cart"><ShoppingCart size={20}/><span>{cartCount}</span></NavLink>
         </li>
       </menu>
     </nav>
