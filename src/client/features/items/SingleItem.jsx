@@ -21,7 +21,7 @@ export default function SingleItem() {
   
   
   const handleAddToCart = () => {
-    addToCart(item.id);
+    addToCart(item.id, selectedSize);
   }
 
 
