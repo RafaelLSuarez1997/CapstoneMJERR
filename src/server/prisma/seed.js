@@ -83,7 +83,7 @@ const mockdata = [
   price: 59.99,
   description: "Traction is key when it comes to a reliable walking shoe, and the outsole of the StrideMax Walk doesn't disappoint. Featuring a durable rubber compound with a multidirectional tread pattern, these shoes offer exceptional grip on various surfaces, ensuring stability and confidence in each step.",
 },
-{ //ddddddddd
+{ 
   brand: "Adidas",
   category: "Women shoes",
   imageUrl: "https://www.sportsdirect.com/images/imgzoom/18/18037203_xxl_a1.jpg",

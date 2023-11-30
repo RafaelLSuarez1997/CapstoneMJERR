@@ -16,7 +16,7 @@ export default function SingleItem() {
   useEffect(() => {
     if (!isItemLoading && !isAllItemsLoading && currentItem && allItems) {
       const filteredItems = allItems.filter(item => item.id !== currentItem.id);
-      const randomRecommendations = getRandomItems(filteredItems, 3);
+      const randomRecommendations = getRandomItems(filteredItems, 5);
       setRecommendedItems(randomRecommendations);
     }
   }, [isItemLoading, isAllItemsLoading, currentItem, allItems]);
