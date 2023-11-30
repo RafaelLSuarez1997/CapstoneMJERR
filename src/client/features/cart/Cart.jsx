@@ -7,10 +7,9 @@ function Cart() {
 
   return (
     <div>
-      <h1>Cart</h1>
+      <h1>Shopping Cart</h1>
       <ul>
-        {Object.entries(cartItems).map(([itemId, quantity]) => {
-        
+        {Object.entries(cartItems).map(([itemId, { quantity, size }]) => {
           const { data: item, isLoading } = useGetItemQuery(itemId);
 
           if (isLoading) {
@@ -23,11 +22,16 @@ function Cart() {
 
           return (
             <li key={itemId}>
-              <img className="item-cart"src={item.imageUrl} alt={item.brand} style={{ width: '100px', height: '100px' }} />
+              <img
+                className="item-cart"
+                src={item.imageUrl}
+                alt={item.brand}
+                style={{ width: '100px', height: '100px' }}
+              />
               <div>
                 <p>Item ID: {itemId}</p>
                 <p>Brand: {item.brand}</p>
-                <p>Size: {item.size}</p>
+                <p>Size: {size}</p>
                 <p>Quantity: {quantity}</p>
               </div>
             </li>
