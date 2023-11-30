@@ -1,30 +1,70 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from './ShopContext';
-import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
-
+import { useDeleteItemMutation } from '../items/itemSlice';
 
 function Cart() {
   const { cartItems, removeFromCart } = useContext(ShopContext);
-  
+  const [currentItemId, setCurrentItemId] = useState(null);
+
+  // Use useEffect to perform removeFromCart when itemId changes
+  useEffect(() => {
+    const onDelete = async () => {
+      if (currentItemId !== null) {
+        // Perform any asynchronous operations before updating the cart
+        // ...
+
+        // Ensure removeFromCart removes the item from the cart
+        removeFromCart(currentItemId);
+      }
+    };
+
+    // Call onDelete when the component mounts and whenever currentItemId changes
+    onDelete();
+  }, [currentItemId, removeFromCart]);
+
+  return (
+    <div>
+      <h1>Shopping Cart</h1>
+      <ul>
+        {Object.entries(cartItems).map(([itemId, { quantity, size }]) => (
+          <li key={itemId}>
+            <p>Item ID: {itemId}</p>
+            <p>Size: {size}</p>
+            <p>Quantity: {quantity}</p>
+            <button onClick={() => setCurrentItemId(itemId)}>Remove from Cart</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default Cart;
+
+
+//Other half of broken code
+
+/*
+import React, { useContext } from 'react';
+import { ShopContext } from './ShopContext';
+import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
+function Cart() {
+  const { cartItems, removeFromCart } = useContext(ShopContext);
   const onDelete = async (itemId) => {
    removeFromCart(itemId)
   }
-
   return (
     <div>
       <h1>Shopping Cart</h1>
       <ul>
         {Object.entries(cartItems).map(([itemId, { quantity, size }]) => {
           const { data: item, isLoading } = useGetItemQuery(itemId);
-
           if (isLoading) {
             return <p>Loading . . .</p>;
           }
-
           if (!item) {
             return <p>Item not found</p>;
           }
-
           return (
             <li key={itemId}>
               <img
@@ -47,5 +87,7 @@ function Cart() {
     </div>
   );
 }
-
 export default Cart;
+*/
+
+
