@@ -1,19 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { useGetItemQuery } from "./itemSlice"; 
 import "./Singleitem.less";
-
+//
+import { ShopContext } from "../cart/ShopContext";
 
 export default function SingleItem() {
   const { id } = useParams();
+  //
+  
   const { data: item, isLoading } = useGetItemQuery(id); 
   const [ selectedSize, setSelectedSize ] = useState(0);
+  //
+  const { addToCart } = useContext(ShopContext);
   console.log("Received item data:", item);
 
   const handleSizeChange = (e) => { 
     setSelectedSize(e.target.value); 
   }
   
+  // 
+  const handleAddToCart = () => {
+    addToCart(item.id);
+  }
+
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -44,6 +54,9 @@ export default function SingleItem() {
         <p>Price: ${item.price}</p>
         <p>Description: {item.description}</p>
       </div>
+      <button className="addtocartbutton" onClick={handleAddToCart}>
+        Add to Cart
+      </button>
     </div>
   );
 }

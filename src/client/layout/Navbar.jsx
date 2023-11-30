@@ -3,6 +3,9 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { logout, selectToken } from "../features/auth/authSlice";
 import ContactUs from "../features/items/ContactUs";
 
+
+import { ShoppingCart } from "phosphor-react";
+
 import "./Navbar.less";
 
 
@@ -47,6 +50,9 @@ export default function Navbar() {
             <NavLink to="/login">Log In</NavLink>
           </li>
         )}
+        <li>
+          <NavLink to="/cart"><ShoppingCart size={20}/></NavLink>
+        </li>
       </menu>
     </nav>
   );
