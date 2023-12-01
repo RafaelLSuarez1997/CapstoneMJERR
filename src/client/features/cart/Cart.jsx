@@ -1,6 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
+import { Link } from 'react-router-dom';
+import './Cart.css';
 
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
@@ -31,6 +33,8 @@ function CartItem({ itemId, quantity, size }) {
         <p>Brand: {item.brand}</p>
         <p>Size: {size}</p>
         <p>Quantity: {quantity}</p>
+        <p>Price: ${item.price}</p>
+        <br/>
         <button onClick={onDelete}>Remove from Cart</button>
       </div>
     </li>
@@ -39,6 +43,26 @@ function CartItem({ itemId, quantity, size }) {
 
 function Cart() {
   const { cartItems } = useContext(ShopContext);
+  const [totalAmount, setTotalAmount] = useState(0);
+
+  const calculateTotalAmount = async () => {
+    let calculatedTotalAmount = 0;
+
+    for (const [itemId, { quantity }] of Object.entries(cartItems)) {
+      try {
+        const { data: item } = await useGetItemQuery(itemId).unwrap();
+        calculatedTotalAmount += item.price * quantity;
+      } catch (error) {
+        console.error(`Error fetching item details for itemId ${itemId}:`, error);
+      }
+    }
+
+    return calculatedTotalAmount;
+  };
+
+  useEffect(() => {
+    calculateTotalAmount().then((result) => setTotalAmount(result));
+  }, [cartItems]);
 
   return (
     <div>
@@ -48,6 +72,12 @@ function Cart() {
           <CartItem key={itemId} itemId={itemId} quantity={quantity} size={size} />
         ))}
       </ul>
+      <br/>
+      <p>Total Amount: ${totalAmount} </p>
+      <br/>
+      <Link to ="/">
+        <button>Continue Shopping</button>
+      </Link>
     </div>
   );
 }

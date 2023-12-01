@@ -5,6 +5,7 @@ import "./Singleitem.less";
 
 import { ShopContext } from "../cart/ShopContext";
 
+
 export default function SingleItem() {
   const { id } = useParams();
   const { data: currentItem, isLoading: isItemLoading } = useGetItemQuery(id);
@@ -80,4 +81,5 @@ export default function SingleItem() {
       </div>
     </div>
   );
+
 }
