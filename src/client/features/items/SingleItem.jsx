@@ -63,7 +63,7 @@ export default function SingleItem() {
             onChange={handleSizeChange}
           />
           <p>Selected Size: {selectedSize}</p>
-          <p>Description: {currentItem.description}</p>
+          <p>{currentItem.description}</p>
           <button className="addtocartbutton" onClick={handleAddToCart}>
             Add to Cart
           </button>
