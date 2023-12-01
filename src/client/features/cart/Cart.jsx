@@ -1,25 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
 import './Cart.css';
 
-
-
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
   const { data: item, isLoading } = useGetItemQuery(itemId);
+
   if (isLoading) {
     return <p>Loading . . .</p>;
   }
+
   if (!item) {
     return <p>Item not found</p>;
   }
+
   const onDelete = () => {
     removeFromCart(itemId);
   };
-
-
 
   return (
     <li key={itemId}>
@@ -41,21 +40,29 @@ function CartItem({ itemId, quantity, size }) {
     </li>
   );
 }
+
 function Cart() {
   const { cartItems } = useContext(ShopContext);
-  const calculateTotalAmount = () => {
-    let totalAmount = 0;
-  
-    Object.entries(cartItems).forEach(([itemId, { quantity }]) => {
-      const { data: item, isLoading } = useGetItemQuery(itemId);
-  
-      if (!isLoading && item) {
-        totalAmount += item.price * quantity;
-      }
-    });
-    return totalAmount;
-  }
+  const [totalAmount, setTotalAmount] = useState(0);
 
+  const calculateTotalAmount = async () => {
+    let calculatedTotalAmount = 0;
+
+    for (const [itemId, { quantity }] of Object.entries(cartItems)) {
+      try {
+        const { data: item } = await useGetItemQuery(itemId).unwrap();
+        calculatedTotalAmount += item.price * quantity;
+      } catch (error) {
+        console.error(`Error fetching item details for itemId ${itemId}:`, error);
+      }
+    }
+
+    return calculatedTotalAmount;
+  };
+
+  useEffect(() => {
+    calculateTotalAmount().then((result) => setTotalAmount(result));
+  }, [cartItems]);
 
   return (
     <div>
@@ -66,13 +73,13 @@ function Cart() {
         ))}
       </ul>
       <br/>
-      <p>Total Amount: ${calculateTotalAmount()} </p>
+      <p>Total Amount: ${totalAmount} </p>
       <br/>
       <Link to ="/">
         <button>Continue Shopping</button>
       </Link>
-      
     </div>
   );
 }
+
 export default Cart;
