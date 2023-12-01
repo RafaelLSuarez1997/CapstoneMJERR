@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';  // Import axios
 import { ShopContext } from './ShopContext';
-import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
+import { useGetItemQuery } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
 
 function CartItem({ itemId, quantity, size }) {
@@ -42,25 +43,28 @@ function CartItem({ itemId, quantity, size }) {
 
 function Cart() {
   const { cartItems } = useContext(ShopContext);
-  const [totalAmount, setTotalAmount] = useState(0);
-
-  const calculateTotalAmount = async () => {
-    let calculatedTotalAmount = 0;
-
-    for (const [itemId, { quantity }] of Object.entries(cartItems)) {
-      try {
-        const { data: item } = await useGetItemQuery(itemId).unwrap();
-        calculatedTotalAmount += item.price * quantity;
-      } catch (error) {
-        console.error(`Error fetching item details for itemId ${itemId}:`, error);
-      }
-    }
-
-    return calculatedTotalAmount;
-  };
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    calculateTotalAmount().then((result) => setTotalAmount(result));
+    const calculateTotalAmount = async () => {
+      let calculatedTotalAmount = 0;
+
+      for (const [itemId, { quantity }] of Object.entries(cartItems)) {
+        try {
+          // Fetch item details using axios DOWNLOAD AXIOS
+          const response = await axios.get(`/api/items/${itemId}`);
+          const item = response.data;
+
+          calculatedTotalAmount += item.price * quantity;
+        } catch (error) {
+          console.error(`Error fetching item details for itemId ${itemId}:`, error);
+        }
+      }
+
+      setTotalPrice(calculatedTotalAmount);
+    };
+
+    calculateTotalAmount();
   }, [cartItems]);
 
   return (
@@ -72,7 +76,7 @@ function Cart() {
         ))}
       </ul>
       <br/>
-      <p>Total Amount: ${totalAmount} </p>
+      <p>Total Amount: ${totalPrice} </p>
       <br/>
       <Link to ="/">
         <button>Continue Shopping</button>
