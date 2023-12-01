@@ -16,6 +16,7 @@ import SpecificItems from "./features/items/SpecificItems.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ShopContextProvider } from "./features/cart/ShopContext.jsx";
+import Checkout from "./features/cart/Checkout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/contact", element: <ContactUs /> },
       { path: "/login", element: <AuthForm /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/checkout", element: <Checkout /> },
     ],
   },
 ]);
