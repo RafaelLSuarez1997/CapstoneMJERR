@@ -1,25 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';  // Import axios
 import { ShopContext } from './ShopContext';
-import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
+import { useGetItemQuery } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
 import './Cart.css';
-
-
 
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
   const { data: item, isLoading } = useGetItemQuery(itemId);
+
   if (isLoading) {
     return <p>Loading . . .</p>;
   }
+
   if (!item) {
     return <p>Item not found</p>;
   }
+
   const onDelete = () => {
     removeFromCart(itemId);
   };
-
-
 
   return (
     <li key={itemId}>
@@ -41,21 +41,32 @@ function CartItem({ itemId, quantity, size }) {
     </li>
   );
 }
+
 function Cart() {
   const { cartItems } = useContext(ShopContext);
-  const calculateTotalAmount = () => {
-    let totalAmount = 0;
-  
-    Object.entries(cartItems).forEach(([itemId, { quantity }]) => {
-      const { data: item, isLoading } = useGetItemQuery(itemId);
-  
-      if (!isLoading && item) {
-        totalAmount += item.price * quantity;
-      }
-    });
-    return totalAmount;
-  }
+  const [totalPrice, setTotalPrice] = useState(0);
 
+  useEffect(() => {
+    const calculateTotalAmount = async () => {
+      let calculatedTotalAmount = 0;
+
+      for (const [itemId, { quantity }] of Object.entries(cartItems)) {
+        try {
+          // Fetch item details using axios DOWNLOAD AXIOS
+          const response = await axios.get(`/api/items/${itemId}`);
+          const item = response.data;
+
+          calculatedTotalAmount += item.price * quantity;
+        } catch (error) {
+          console.error(`Error fetching item details for itemId ${itemId}:`, error);
+        }
+      }
+
+      setTotalPrice(calculatedTotalAmount);
+    };
+
+    calculateTotalAmount();
+  }, [cartItems]);
 
   return (
     <div>
@@ -66,13 +77,13 @@ function Cart() {
         ))}
       </ul>
       <br/>
-      <p>Total Amount: ${calculateTotalAmount()} </p>
+      <p>Total Amount: ${totalPrice} </p>
       <br/>
       <Link to ="/">
         <button>Continue Shopping</button>
       </Link>
-      
     </div>
   );
 }
+
 export default Cart;
