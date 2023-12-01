@@ -4,8 +4,8 @@ const mockdata = [
   {
     brand: "Nike",
     description: "Recognizing the Dunk's roots as the top-ranking college team sneaker, the Be True To Your School pack looks to the original ad campaign for inspiration. Colors represent top-flight universities, while crisp leather has the perfect amount of sheen to make 'em a hands-down win. So lace up and show off that varsity spirit. Ya game?" ,
-    category: "Mens shoes",
-    imageUrl: "https://static.nike.com/a/images/t_PDP_1728_v1/f_auto,q_auto:eco/d706b6dd-32a7-4ed9-81c9-c0808624807c/dunk-low-retro-mens-shoes-njHwD3.png",
+    category: "Photon Dust",
+    imageUrl: "https://images.stockx.com/360/Nike-Dunk-Low-Photon-Dust-W/Images/Nike-Dunk-Low-Photon-Dust-W/Lv2/img01.jpg?fm=webp&auto=compress&w=480&dpr=1&updated_at=1635256235&h=320&q=57",
     size: 0.0,
     price: 129.99,
     description: "Recognizing the Dunk's roots as the top-ranking college team sneaker, the Be True To Your School pack looks to the original ad campaign for inspiration. Colors represent top-flight universities, while crisp leather has the perfect amount of sheen to make 'em a hands-down win. So lace up and show off that varsity spirit. Ya game?",

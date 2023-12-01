@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery, useDeleteItemMutation } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
-import './Cart.css';
 
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
