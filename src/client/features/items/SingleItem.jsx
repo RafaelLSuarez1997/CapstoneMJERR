@@ -5,6 +5,7 @@ import "./Singleitem.less";
 
 import { ShopContext } from "../cart/ShopContext";
 
+
 export default function SingleItem() {
   const { id } = useParams();
   const { data: currentItem, isLoading: isItemLoading } = useGetItemQuery(id);
@@ -66,6 +67,9 @@ export default function SingleItem() {
           <button className="addtocartbutton" onClick={handleAddToCart}>
             Add to Cart
           </button>
+          <Link to = "/">
+            <button className="continuebutton">Continue Shopping </button>
+          </Link>
         </div>
       </div>
       <div className="recommended-items">
@@ -80,4 +84,5 @@ export default function SingleItem() {
       </div>
     </div>
   );
+
 }
