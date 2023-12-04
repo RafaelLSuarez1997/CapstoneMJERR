@@ -37,8 +37,6 @@ router.post("/contact", async (req, res, next) => {
   }
 });
 
-
-// get by brand
 router.get("/:brand", async (req, res, next) => {
   try {
     const brand = req.params.brand;
