@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { ShopContext } from './ShopContext';
+import "./checkout.less"
 
 function Checkout() {
   const { cartItems, clearCart } = useContext(ShopContext);
@@ -23,9 +24,32 @@ function Checkout() {
   };
 
   const handlePaymentChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target;2
     setPaymentInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
+
+  
+  const [itemDetails, setItemDetails] = useState({});
+
+  useEffect(() => {
+    const fetchItemDetails = async () => {
+      const details = {};
+      for (const [itemId, { quantity }] of Object.entries(cartItems)) {
+        try {
+          const response = await axios.get(`/api/items/${itemId}`);
+          details[itemId] = response.data;
+        } catch (error) {
+          console.error(`Error fetching item details for itemId ${itemId}:`, error);
+          details[itemId] = null;
+        }
+      }
+      setItemDetails(details);
+    };
+
+    fetchItemDetails();
+  }, [cartItems]);
+
+
 
   const calculateTotalAmount = async () => {
     try {
@@ -82,10 +106,11 @@ function Checkout() {
     fetchTotalAmount();
   }, [cartItems]);
 
+
   return (
-    <div>
+    <div className="checkout-container">
       <h1>Checkout</h1>
-      <div>
+      <div className="shipping-info">
         <h2>Shipping Information</h2>
         <form>
           <label>
@@ -109,7 +134,7 @@ function Checkout() {
           </label>
         </form>
       </div>
-      <div>
+      <div className="payment-info">
         <h2>Payment Information</h2>
         <form>
           <label>
@@ -134,18 +159,29 @@ function Checkout() {
           </label>
         </form>
       </div>
-      <div>
+      <div className="order-summary">
         <h2>Order Summary</h2>
         <ul>
-          {Object.entries(cartItems).map(([itemId, { quantity, size, price }]) => (
+          {Object.entries(cartItems).map(([itemId, { quantity, size , price }]) => (
             <li key={itemId}>
-              Item ID: {itemId}, Quantity: {quantity}, Size: {size}
+              {itemDetails[itemId] ? (
+                <div className='shoeInfo'>
+                  <img className="checkoutImg" src={itemDetails[itemId].imageUrl}/>
+                  <p>{itemDetails[itemId].brand}</p>
+                  <p>Quantity: {quantity}</p>
+                  <p>Size: {size}</p>
+                  <p>${itemDetails[itemId].price}</p>
+                  <br/>
+                </div>
+              ) : (
+                <p>Item details not available</p>
+              )}
             </li>
           ))}
         </ul>
         <p>Total Amount: ${totalAmount.toFixed(2)}</p>
       </div>
-      <div>
+      <div className="action-buttons">
         <button onClick={handlePlaceOrder}>Place Order</button>
         <Link to="/">
           <button>Cancel</button>
