@@ -17,6 +17,7 @@ import SpecificItems from "./features/items/SpecificItems.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ShopContextProvider } from "./features/cart/ShopContext.jsx";
 import Checkout from "./features/cart/Checkout.jsx";
+import ThankYouMessage from "./features/cart/ThankYouMessage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <AuthForm /> },
       { path: "/cart", element: <Cart /> },
       { path: "/checkout", element: <Checkout /> },
+      { path: "/checkout-message", element: <ThankYouMessage /> },
     ],
   },
 ]);

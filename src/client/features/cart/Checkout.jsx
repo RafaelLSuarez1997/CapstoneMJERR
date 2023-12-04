@@ -1,7 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from './ShopContext';
+import ThankYouMessage from './ThankYouMessage';
+import "./checkout.less";
 
 function Checkout() {
   const { cartItems, clearCart } = useContext(ShopContext);
@@ -16,6 +18,8 @@ function Checkout() {
   const [isOrderPlaced, setIsOrderPlaced] = useState(false);
   const [orderId, setOrderId] = useState('');
   const [totalAmount, setTotalAmount] = useState(0);
+  const [itemDetails, setItemDetails] = useState({});
+  const navigate = useNavigate();
 
   const handleShippingChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +30,24 @@ function Checkout() {
     const { name, value } = e.target;
     setPaymentInfo((prevInfo) => ({ ...prevInfo, [name]: value }));
   };
+
+  const fetchItemDetails = async () => {
+    const details = {};
+    for (const [itemId, { quantity }] of Object.entries(cartItems)) {
+      try {
+        const response = await axios.get(`/api/items/${itemId}`);
+        details[itemId] = response.data;
+      } catch (error) {
+        console.error(`Error fetching item details for itemId ${itemId}:`, error);
+        details[itemId] = null;
+      }
+    }
+    setItemDetails(details);
+  };
+
+  useEffect(() => {
+    fetchItemDetails();
+  }, [cartItems]);
 
   const calculateTotalAmount = async () => {
     try {
@@ -41,7 +63,7 @@ function Checkout() {
       return isNaN(total) ? 0 : total;
     } catch (error) {
       console.error('Error calculating total amount:', error);
-      return 0; // handles the error
+      return 0;
     }
   };
 
@@ -53,26 +75,37 @@ function Checkout() {
     try {
       // generate a random order ID
       const newOrderId = generateRandomOrderId();
+  
+      // set the order ID in the component's state
       setOrderId(newOrderId);
-
-      // clears cart when order is placed added from ShopContext
+  
+      // clears cart when the order is placed, added from ShopContext
       clearCart();
-
-      // calculate total amount
+  
+      // calculate the total amount
       const total = await calculateTotalAmount();
       setTotalAmount(total);
-
+  
       // set the state to show the order confirmation
       setIsOrderPlaced(true);
+  
+      // navigate to the order confirmation page with the order ID
+      navigate(`/checkout-message?orderId=${newOrderId}`);
     } catch (error) {
       console.error('Error placing order:', error);
     }
   };
 
-  const handleCloseModal = () => {
+  useEffect(() => {
+    if (isOrderPlaced && orderId) {
+      navigate('/checkout-message');
+    }
+  }, [isOrderPlaced, orderId, navigate]);
+
+  const handleClose = () => {
     setIsOrderPlaced(false);
   };
-
+  
   useEffect(() => {
     const fetchTotalAmount = async () => {
       const total = await calculateTotalAmount();
@@ -83,9 +116,9 @@ function Checkout() {
   }, [cartItems]);
 
   return (
-    <div>
+    <div className="checkout-container">
       <h1>Checkout</h1>
-      <div>
+      <div className="shipping-info">
         <h2>Shipping Information</h2>
         <form>
           <label>
@@ -109,7 +142,7 @@ function Checkout() {
           </label>
         </form>
       </div>
-      <div>
+      <div className="payment-info">
         <h2>Payment Information</h2>
         <form>
           <label>
@@ -134,18 +167,29 @@ function Checkout() {
           </label>
         </form>
       </div>
-      <div>
+      <div className="order-summary">
         <h2>Order Summary</h2>
         <ul>
           {Object.entries(cartItems).map(([itemId, { quantity, size, price }]) => (
             <li key={itemId}>
-              Item ID: {itemId}, Quantity: {quantity}, Size: {size}
+              {itemDetails[itemId] ? (
+                <div className='shoeInfo'>
+                  <img className="checkoutImg" src={itemDetails[itemId].imageUrl} alt={`Product ${itemId}`} />
+                  <p>{itemDetails[itemId].brand}</p>
+                  <p>Quantity: {quantity}</p>
+                  <p>Size: {size}</p>
+                  <p>${itemDetails[itemId].price}</p>
+                  <br />
+                </div>
+              ) : (
+                <p>Item details not available</p>
+              )}
             </li>
           ))}
         </ul>
         <p>Total Amount: ${totalAmount.toFixed(2)}</p>
       </div>
-      <div>
+      <div className="action-buttons">
         <button onClick={handlePlaceOrder}>Place Order</button>
         <Link to="/">
           <button>Cancel</button>
@@ -153,15 +197,7 @@ function Checkout() {
       </div>
       {/* Order Confirmation Popup */}
       {isOrderPlaced && (
-        <div className="popup-msg">
-          <div className="popup-content">
-            <span className="close" onClick={handleCloseModal}>
-              X
-            </span>
-            <p>Your order has been successfully placed!</p>
-            <p>Order ID: {orderId}</p>
-          </div>
-        </div>
+        <ThankYouMessage orderId={orderId} onClose={handleClose} />
       )}
     </div>
   );
