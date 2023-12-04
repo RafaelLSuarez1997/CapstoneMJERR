@@ -81,6 +81,9 @@ function Cart() {
       <Link to ="/">
         <button>Continue Shopping</button>
       </Link>
+      <Link to ="/checkout">
+        <button>Proceed to Checkout</button>
+      </Link>
     </div>
   );
 }
