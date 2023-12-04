@@ -193,10 +193,9 @@ function Checkout() {
       <div className="action-buttons">
         <button onClick={handlePlaceOrder}>Place Order</button>
         <Link to="/">
-          <button>Cancel</button>
+          <button>Home</button>
         </Link>
       </div>
-      {/* Order Confirmation Popup */}
       {isOrderPlaced && (
         <ThankYouMessage orderId={orderId} onClose={handleClose} />
       )}
