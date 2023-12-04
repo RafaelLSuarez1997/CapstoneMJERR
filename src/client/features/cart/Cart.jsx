@@ -3,7 +3,6 @@ import axios from 'axios';  // Import axios
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
-import './Cart.css';
 
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
@@ -77,10 +76,13 @@ function Cart() {
         ))}
       </ul>
       <br/>
-      <p>Total Amount: ${totalPrice} </p>
+      <p>Total Amount: ${totalPrice.toFixed(2)} </p>
       <br/>
       <Link to ="/">
         <button>Continue Shopping</button>
+      </Link>
+      <Link to ="/checkout">
+        <button>Proceed to Checkout</button>
       </Link>
     </div>
   );

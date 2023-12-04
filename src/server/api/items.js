@@ -37,3 +37,18 @@ router.post("/contact", async (req, res, next) => {
   }
 });
 
+
+// get by brand
+router.get("/:brand", async (req, res, next) => {
+  try {
+    const brand = req.params.brand;
+
+    const itemsByBrand = await prisma.items.findMany({
+      where: { brand: brand },
+    });
+
+    res.json(itemsByBrand);
+  } catch (err) {
+    next(err);
+  }
+});

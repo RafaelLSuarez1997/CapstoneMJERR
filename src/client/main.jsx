@@ -12,9 +12,11 @@ import Root from "./layout/Root.jsx";
 import SingleItem from "./features/items/SingleItem.jsx";
 import ContactUs from "./features/items/ContactUs";
 import Cart from "./features/cart/Cart.jsx";
+import SpecificItems from "./features/items/SpecificItems.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ShopContextProvider } from "./features/cart/ShopContext.jsx";
+import Checkout from "./features/cart/Checkout.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,9 +29,11 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Items /> },
       { path: "/:id", element: <SingleItem /> },
+      { path: "/:brand", element: <SpecificItems /> },
       { path: "/contact", element: <ContactUs /> },
       { path: "/login", element: <AuthForm /> },
       { path: "/cart", element: <Cart /> },
+      { path: "/checkout", element: <Checkout /> },
     ],
   },
 ]);
