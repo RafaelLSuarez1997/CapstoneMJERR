@@ -3,24 +3,18 @@ import axios from 'axios';  // Import axios
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
-import './cart.less';
-
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
   const { data: item, isLoading } = useGetItemQuery(itemId);
-
   if (isLoading) {
     return <p>Loading . . .</p>;
   }
-
   if (!item) {
     return <p>Item not found</p>;
   }
-
   const onDelete = () => {
     removeFromCart(itemId);
   };
-
   return (
     <li key={itemId}>
       <img
@@ -41,32 +35,26 @@ function CartItem({ itemId, quantity, size }) {
     </li>
   );
 }
-
 function Cart() {
   const { cartItems } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
-
   useEffect(() => {
     const calculateTotalAmount = async () => {
       let calculatedTotalAmount = 0;
-
       for (const [itemId, { quantity }] of Object.entries(cartItems)) {
         try {
+          // Fetch item details using axios DOWNLOAD AXIOS
           const response = await axios.get(`/api/items/${itemId}`);
           const item = response.data;
-
           calculatedTotalAmount += item.price * quantity;
         } catch (error) {
           console.error(`Error fetching item details for itemId ${itemId}:`, error);
         }
       }
-
       setTotalPrice(calculatedTotalAmount);
     };
-
     calculateTotalAmount();
   }, [cartItems]);
-
   return (
     <div>
       <h1>Shopping Cart</h1>
@@ -87,5 +75,4 @@ function Cart() {
     </div>
   );
 }
-
 export default Cart;
