@@ -3,6 +3,7 @@ import axios from 'axios';  // Import axios
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
+import './cart.less';
 
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
@@ -51,7 +52,6 @@ function Cart() {
 
       for (const [itemId, { quantity }] of Object.entries(cartItems)) {
         try {
-          // Fetch item details using axios DOWNLOAD AXIOS
           const response = await axios.get(`/api/items/${itemId}`);
           const item = response.data;
 

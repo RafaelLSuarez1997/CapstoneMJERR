@@ -64,16 +64,25 @@
   .recommended-item {
     display: inline-block;
     margin-right: 20px;
-    border: 1px solid #ddd; 
+    padding: 2%;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.20);
+      text-decoration: none;
+      border: 1px solid #00000086; 
+    }
 
     img {
-      max-width: 100px;
+      max-width: 86px;
       height: auto;
     }
 
     p {
-      font-size: 16px;
+      font-size: 15px;
       margin-top: 8px;
+      text-align: center;
+      
     }
   }
 }
