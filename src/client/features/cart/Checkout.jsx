@@ -90,21 +90,17 @@ function Checkout() {
       setIsOrderPlaced(true);
   
       // navigate to the order confirmation page with the order ID
-      navigate(`/checkout-message?orderId=${newOrderId}`);
+      navigate(`/checkout-message/${newOrderId}`);
     } catch (error) {
       console.error('Error placing order:', error);
     }
   };
-
-  useEffect(() => {
-    if (isOrderPlaced && orderId) {
-      navigate('/checkout-message');
-    }
-  }, [isOrderPlaced, orderId, navigate]);
-
-  const handleClose = () => {
-    setIsOrderPlaced(false);
-  };
+  
+  // useEffect(() => {
+  //   if (isOrderPlaced && orderId) {
+  //     navigate(`/checkout-message/${orderId}`);
+  //   }
+  // }, [isOrderPlaced, orderId, navigate]);
   
   useEffect(() => {
     const fetchTotalAmount = async () => {
