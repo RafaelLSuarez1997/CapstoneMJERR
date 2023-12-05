@@ -1,39 +1,40 @@
-import api from "../../store/api";
+import api from '../../store/api';
 
 const itemsApi = api.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getItems: builder.query({
-      query: () => "/items",
-      providesTags: ["Items"],
+      query: () => '/items',
+
+      providesTags: ['Items']
     }),
     getItem: builder.query({
-      query: (id) => `/items/${id}`,
-      providesTags: ["Items"],
+      query: id => `/items/${id}`,
+      providesTags: ['Items']
     }),
     createItem: builder.mutation({
-      query: (item) => ({
-        url: "/items",
-        method: "POST",
-        body: item,
+      query: item => ({
+        url: '/items',
+        method: 'POST',
+        body: item
       }),
-      invalidatesTags: ["Items"],
+      invalidatesTags: ['Items']
     }),
     editItem: builder.mutation({
-      query: (item) => ({
+      query: item => ({
         url: `/items/${item.id}`,
-        method: "PUT",
-        body: item,
+        method: 'PUT',
+        body: item
       }),
-      invalidatesTags: ["Items"],
+      invalidatesTags: ['Items']
     }),
     deleteItem: builder.mutation({
-      query: (id) => ({
+      query: id => ({
         url: `/items/${id}`,
-        method: "DELETE",
+        method: 'DELETE'
       }),
-      invalidatesTags: ["Items"],
-    }),
-  }),
+      invalidatesTags: ['Items']
+    })
+  })
 });
 
 export const {
@@ -41,5 +42,5 @@ export const {
   useGetItemQuery,
   useCreateItemMutation,
   useEditItemMutation,
-  useDeleteItemMutation,
+  useDeleteItemMutation
 } = itemsApi;
