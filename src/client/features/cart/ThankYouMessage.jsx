@@ -1,10 +1,10 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import "./ThankYouMessage.less"
-function ThankYouMessage({ onClose }) {
-  const location = useLocation();
-  const orderId = new URLSearchParams(location.search).get('orderId');
+import { Link, useParams } from 'react-router-dom';
+import "./ThankYouMessage.less";
 
+function ThankYouMessage({ onClose }) {
+  const { orderId } = useParams();
+  console.log("orderId:", orderId);
   return (
     <div className="popup-msg">
       <div className="popup-content">
