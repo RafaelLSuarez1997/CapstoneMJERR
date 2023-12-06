@@ -1,11 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';  // Import axios
+import axios from 'axios';  
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
 import { Link } from 'react-router-dom';
+import { selectToken } from '../auth/authSlice'
+import { useSelector } from 'react-redux';
+
 function CartItem({ itemId, quantity, size }) {
   const { removeFromCart } = useContext(ShopContext);
   const { data: item, isLoading } = useGetItemQuery(itemId);
+
   if (isLoading) {
     return <p>Loading . . .</p>;
   }
@@ -15,6 +19,7 @@ function CartItem({ itemId, quantity, size }) {
   const onDelete = () => {
     removeFromCart(itemId);
   };
+
   return (
     <li key={itemId}>
       <img
@@ -35,9 +40,11 @@ function CartItem({ itemId, quantity, size }) {
     </li>
   );
 }
+
 function Cart() {
   const { cartItems } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
+  const authToken = useSelector(selectToken)
   useEffect(() => {
     const calculateTotalAmount = async () => {
       let calculatedTotalAmount = 0;
@@ -55,6 +62,8 @@ function Cart() {
     };
     calculateTotalAmount();
   }, [cartItems]);
+
+  if (authToken) {
   return (
     <div>
       <h1>Shopping Cart</h1>
@@ -74,5 +83,7 @@ function Cart() {
       </Link>
     </div>
   );
-}
+}else{
+  return <p>Please log in or sign up to view your cart</p>
+}}
 export default Cart;
