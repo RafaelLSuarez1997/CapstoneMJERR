@@ -73,6 +73,18 @@ function Checkout() {
 
   const handlePlaceOrder = async () => {
     try {
+
+      // check if shipping info is complete
+      if (!shippingInfo.fullName || !shippingInfo.address) {
+        alert("Please fill in all shipping information")
+        return;
+      }
+      // check if payment info is complete
+      if (!paymentInfo.cardNumber || !paymentInfo.expirationDate) {
+        alert("Please fill in all shipping information")
+        return;
+      }
+
       // generate a random order ID
       const newOrderId = generateRandomOrderId();
   
