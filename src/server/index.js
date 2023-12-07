@@ -23,6 +23,12 @@ const createApp = async () => {
   // API routes
   app.use("/api", require("./api"));
 
+  const endpoint = "/";
+  const requestHandler = (request, response) => {
+    response.send("Hello!!");
+  };
+  app.get(endpoint, requestHandler);
+
   // Serve static HTML in production & Vite dev server in development
   if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.resolve(__dirname, "../../dist/")));

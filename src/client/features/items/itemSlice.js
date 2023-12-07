@@ -1,39 +1,49 @@
-import api from "../../store/api";
+import api from '../../store/api';
 
 const itemsApi = api.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getItems: builder.query({
-      query: () => "/items",
-      providesTags: ["Items"],
+
+      query: () => '/items',
+      providesTags: ['Items']
     }),
     getItem: builder.query({
-      query: (id) => `/items/${id}`,
-      providesTags: ["Items"],
+
+      query: id => `/items/id/${id}`,
+      providesTags: ['Items']
     }),
     createItem: builder.mutation({
-      query: (item) => ({
-        url: "/items",
-        method: "POST",
-        body: item,
+
+      query: item => ({
+        url: '/items',
+        method: 'POST',
+        body: item
       }),
-      invalidatesTags: ["Items"],
+      invalidatesTags: ['Items']
     }),
     editItem: builder.mutation({
-      query: (item) => ({
-        url: `/items/${item.id}`,
-        method: "PUT",
-        body: item,
+
+      query: item => ({
+        url: `/items/id/${item.id}`,
+        method: 'PUT',
+        body: item
       }),
-      invalidatesTags: ["Items"],
+      invalidatesTags: ['Items']
     }),
     deleteItem: builder.mutation({
-      query: (id) => ({
-        url: `/items/${id}`,
-        method: "DELETE",
+
+      query: id => ({
+        url: `/items/id/${id}`,
+        method: 'DELETE'
       }),
-      invalidatesTags: ["Items"],
+      invalidatesTags: ['Items']
     }),
-  }),
+    getItemsByBrand: builder.query({
+      
+      query: brand => `/items/brand/${brand}`,
+      providesTags: ['ItemsByBrand']
+    }),
+  })
 });
 
 export const {
@@ -42,4 +52,5 @@ export const {
   useCreateItemMutation,
   useEditItemMutation,
   useDeleteItemMutation,
+  useGetItemsByBrandQuery
 } = itemsApi;
