@@ -21,23 +21,38 @@ export default function SingleItem() {
       setRecommendedItems(randomRecommendations);
     }
   }, [isItemLoading, isAllItemsLoading, currentItem, allItems]);
+
   const getRandomItems = (items, count) => {
     const shuffledItems = items.sort(() => 0.5 - Math.random());
     return shuffledItems.slice(0, count);
   };
+
   const handleSizeChange = (e) => {
     setSelectedSize(e.target.value);
   };
+
   const handleAddToCart = () => {
     addToCart(currentItem.id, selectedSize);
   };
+
+  const handleAddToWishlist = () => {
+    // Add logic to send a request to your API endpoint for adding to the wishlist
+    console.log('Added to Wishlist:', currentItem.id);
+  };
+
+  const handleRemoveFromWishlist = () => {
+    // Add logic to send a request to your API endpoint for removing from the wishlist
+    console.log('Removed from Wishlist:', currentItem.id);
+  };
+
   if (isItemLoading || isAllItemsLoading) {
     return <p>Loading...</p>;
   }
+
   if (!currentItem) {
     return <p>Item not found</p>;
   }
-  
+
   return (
     <div>
       <div className="single-item-container">
@@ -61,6 +76,12 @@ export default function SingleItem() {
           <p>Description: {currentItem.description}</p>
           <button className="addtocartbutton" onClick={handleAddToCart}>
             Add to Cart
+          </button>
+          <button className="wishlist-button" onClick={handleAddToWishlist}>
+            Add to Wishlist
+          </button>
+          <button className="wishlist-button" onClick={handleRemoveFromWishlist}>
+            Remove from Wishlist
           </button>
         </div>
       </div>

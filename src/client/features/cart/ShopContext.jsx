@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import Items from "../items/Items.jsx";
+import axios from "axios";
 
 export const ShopContext = createContext(null);
 
@@ -14,6 +15,24 @@ const getDefaultCart = () => {
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
   const [cartCount, setCartCount] = useState(0);
+
+  const handleAddToWishlist = async (currentItem) => {
+    try {
+      await axios.post('/wishlist/add', { userId: CURRENT_USER_ID, itemId: currentItem.id });
+      console.log('Added to Wishlist:', currentItem.id);
+    } catch (error) {
+      console.error('Error adding to Wishlist:', error);
+    }
+  };
+
+  const handleRemoveFromWishlist = async (currentItem) => {
+    try {
+      await axios.post('/wishlist/remove', { userId: CURRENT_USER_ID, itemId: currentItem.id });
+      console.log('Removed from Wishlist:', currentItem.id);
+    } catch (error) {
+      console.error('Error removing from Wishlist:', error);
+    }
+  };
 
   const addToCart = (itemId, size) => {
     setCartItems((prev) => ({
@@ -54,7 +73,10 @@ export const ShopContextProvider = (props) => {
     cartCount,
     addToCart,
     removeFromCart,
-    clearCart, // added clear cart to reset order placement
+    clearCart,
+    handleAddToWishlist,
+    handleRemoveFromWishlist,
+    // added clear cart to reset order placement
   };
 
   return (
