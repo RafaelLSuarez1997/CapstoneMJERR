@@ -11,6 +11,7 @@ model User {
   id       Int    @id @default(autoincrement())
   username String @unique
   password String
+  cart     Cart?
 }
 
 model Items {
@@ -21,16 +22,16 @@ model Items {
   size        Float
   price       Float
   description String
-  Cart   CartItems[]
+  cart        CartItems[]
 }
 
 model Cart {
   id        Int         @id @default(autoincrement())
-  userId    Int // You might associate the cart with a specific user
+  userId    Int @unique
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
-  Items CartItems[]
-  user  User            @relation(fields: [userId], references: [id])
+  items     CartItems[]
+  user      User        @relation(fields: [userId], references: [id])
 }
 
 model CartItems {
