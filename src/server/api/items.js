@@ -15,7 +15,7 @@ router.get("/", async (req, res, next) => {
 });
 
 // Get shoes by their id
-router.get("/:id", async (req, res, next) => {
+router.get("/id/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
 
@@ -37,15 +37,13 @@ router.post("/contact", async (req, res, next) => {
   }
 });
 
-router.get("/:brand", async (req, res, next) => {
+// get by brand
+router.get("/brand/:brand", async (req, res, next) => {
   try {
     const brand = req.params.brand;
 
-    const itemsByBrand = await prisma.items.findMany({
-      where: { brand: brand },
-    });
-
-    res.json(itemsByBrand);
+    const items = await prisma.items.findMany({ where: { brand } });
+    res.json(items);
   } catch (err) {
     next(err);
   }

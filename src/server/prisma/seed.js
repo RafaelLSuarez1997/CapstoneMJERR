@@ -168,7 +168,31 @@ const mockdata = [
     size: 0.0,
     price: 25.99,
     description:'Puma Cali: Inspired by West Coast vibes, the Puma Cali offers a laid-back yet trendy aesthetic with a chunky sole and minimalist branding, making it a versatile choice for casual wear'
-  }
+  },
+  {
+    brand: 'Avenger',
+    category: 'fighting crime',
+    imageUrl:'https://img.ltwebstatic.com/images3_pi/2023/09/07/d4/16940637933a5c5749ed2a8a34cc864324955e9ff4_thumbnail_600x.webp',
+    size: 0.0,
+    price: 45.99,
+    description:'Hulk feet bruh'
+  },
+  {
+    brand: 'Astro',
+    category: 'flying',
+    imageUrl:'https://m.media-amazon.com/images/I/51huhpQvgjL._AC_SY500_.jpg',
+    size: 0.0,
+    price: 500.00,
+    description:'CLEUS Astro Boy Big Red Boots'
+  },
+  {
+    brand: 'Frog',
+    category: 'Croc',
+    imageUrl:'https://img.ssensemedia.com/images/f_auto,q_auto:best/241477F121032_3/jw-anderson-green-wellipets-edition-frog-loafers.jpg',
+    size: 0.0,
+    price: 6000.00,
+    description:'ribbit ribbit'
+  },
 ];
 
 const seed = async () => {

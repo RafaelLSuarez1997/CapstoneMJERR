@@ -3,15 +3,17 @@ import api from '../../store/api';
 const itemsApi = api.injectEndpoints({
   endpoints: builder => ({
     getItems: builder.query({
-      query: () => '/items',
 
+      query: () => '/items',
       providesTags: ['Items']
     }),
     getItem: builder.query({
-      query: id => `/items/${id}`,
+
+      query: id => `/items/id/${id}`,
       providesTags: ['Items']
     }),
     createItem: builder.mutation({
+
       query: item => ({
         url: '/items',
         method: 'POST',
@@ -20,20 +22,27 @@ const itemsApi = api.injectEndpoints({
       invalidatesTags: ['Items']
     }),
     editItem: builder.mutation({
+
       query: item => ({
-        url: `/items/${item.id}`,
+        url: `/items/id/${item.id}`,
         method: 'PUT',
         body: item
       }),
       invalidatesTags: ['Items']
     }),
     deleteItem: builder.mutation({
+
       query: id => ({
-        url: `/items/${id}`,
+        url: `/items/id/${id}`,
         method: 'DELETE'
       }),
       invalidatesTags: ['Items']
-    })
+    }),
+    getItemsByBrand: builder.query({
+      
+      query: brand => `/items/brand/${brand}`,
+      providesTags: ['ItemsByBrand']
+    }),
   })
 });
 
@@ -42,5 +51,6 @@ export const {
   useGetItemQuery,
   useCreateItemMutation,
   useEditItemMutation,
-  useDeleteItemMutation
+  useDeleteItemMutation,
+  useGetItemsByBrandQuery
 } = itemsApi;
