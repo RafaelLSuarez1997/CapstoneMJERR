@@ -8,34 +8,39 @@ datasource db {
 }
 
 model User {
-  id   Int    @id @default(autoincrement())
+  id       Int    @id @default(autoincrement())
   username String @unique
   password String
 }
 
 model Items {
-  id          Int    @id @default(autoincrement())
+  id          Int         @id @default(autoincrement())
   brand       String
   category    String
   imageUrl    String
   size        Float
   price       Float
   description String
+  Cart   CartItems[]
 }
 
 model Cart {
+  id        Int         @id @default(autoincrement())
+  userId    Int // You might associate the cart with a specific user
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  Items CartItems[]
+  user  User            @relation(fields: [userId], references: [id])
+}
+
+model CartItems {
   id        Int      @id @default(autoincrement())
-  userId    Int      // You might associate the cart with a specific user
-  productId Int      // The ID of the product in the cart
-  quantity  Int      // The quantity of the product in the cart
-  size      Float    // The selected size for the product in the cart
+  cartId    Int
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  productId Int
+  product   Items    @relation(fields: [productId], references: [id])
+  quantity  Int
+  size      Float
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
-// stripe payemnt -> standalone table -> model 
-
-// cartItems --> a cart 
-// cartItems -> productId + qty + size 
-
-// cart -> cartItems + userId 

@@ -1,0 +1,12 @@
+-- CreateTable
+CREATE TABLE "CartItems" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "cartId" INTEGER NOT NULL,
+    "productId" INTEGER NOT NULL,
+    "quantity" INTEGER NOT NULL,
+    "size" REAL NOT NULL,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL,
+    CONSTRAINT "CartItems_cartId_fkey" FOREIGN KEY ("cartId") REFERENCES "Cart" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,
+    CONSTRAINT "CartItems_productId_fkey" FOREIGN KEY ("productId") REFERENCES "Items" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+);
