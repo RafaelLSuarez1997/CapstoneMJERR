@@ -21,6 +21,7 @@ model Items {
   size        Float
   price       Float
   description String
+  Cart        CartItems []
 }
 
 model Cart {
@@ -31,4 +32,18 @@ model Cart {
   size      Float    // The selected size for the product in the cart
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Items     CartItems[]
+}
+
+model CartItems {
+  id    Int @id @default(autoincrement())
+  cartId  Int
+  cart    Cart @relation(fields: [cartId], references: [id])
+  productId Int
+  product   Items @relation(fields: [productId], references: [id])
+  quantity  Int
+  size      Float
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
 }

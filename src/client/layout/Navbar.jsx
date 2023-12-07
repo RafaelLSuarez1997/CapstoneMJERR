@@ -5,7 +5,7 @@ import { logout, selectToken } from "../features/auth/authSlice";
 import ContactUs from "../features/items/ContactUs";
 import { ShopContext } from "../features/cart/ShopContext";
 import { ShoppingCart } from "phosphor-react";
-import Cart from "../features/cart/Cart";
+
 import "./Navbar.less";
 
 
