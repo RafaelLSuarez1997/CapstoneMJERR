@@ -10,7 +10,7 @@ import './Navbar.less';
 import image from'../assets/SmallLogo.png'
 import imagetext from'../assets/LogoText.png'
 
-export default function Navbar() {
+export default function HomeNavbar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { cartCount } = useContext(ShopContext);
@@ -23,14 +23,8 @@ export default function Navbar() {
 
   return (
     <nav className="top">
-      <div className="logo">
-        <img className='imglogo'src={image} alt='logo' />
-        <img className='imgtext' src={imagetext} alt='logo' />
-      </div>
+      
       <menu>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
         <li>
           <NavLink to="/contact">Contact Us</NavLink>
         </li>
