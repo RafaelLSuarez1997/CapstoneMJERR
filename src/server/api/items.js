@@ -5,9 +5,9 @@ const router = require("express").Router();
 module.exports = router;
 
 // Get all items
-router.get("/items", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    const items = await prisma.item.findMany();
+    const items = await prisma.items.findMany();
     res.json(items);
   } catch (err) {
     next(err);
@@ -15,10 +15,10 @@ router.get("/items", async (req, res, next) => {
 });
 
 // Get a specific item by ID
-router.get("/items/:itemId", async (req, res, next) => {
+router.get("/:id", async (req, res, next) => {
   try {
-    const itemId = +req.params.itemId;
-    const item = await prisma.item.findUnique({
+    const itemId = +req.params.id;
+    const item = await prisma.items.findUnique({
       where: {
         id: itemId,
       },

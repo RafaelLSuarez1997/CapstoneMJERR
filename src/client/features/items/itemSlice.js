@@ -9,7 +9,7 @@ const itemsApi = api.injectEndpoints({
     }),
     getItem: builder.query({
 
-      query: id => `/items/id/${id}`,
+      query: id => `/items/${id}`,
       providesTags: ['Items']
     }),
     createItem: builder.mutation({
