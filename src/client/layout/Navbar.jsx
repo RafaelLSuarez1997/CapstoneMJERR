@@ -29,6 +29,8 @@ export default function Navbar() {
       </div>
       <menu>
         <li>
+        </li>
+        <li>
           <NavLink to="/">Home</NavLink>
         </li>
         <li>
