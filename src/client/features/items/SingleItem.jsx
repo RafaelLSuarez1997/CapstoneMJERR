@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useGetItemQuery, useGetItemsQuery } from "./itemSlice";
 import "./Singleitem.less";
 import { ShopContext } from "../cart/ShopContext";
+import Navbar from "../../layout/Navbar";
 
 
 
@@ -40,6 +41,7 @@ export default function SingleItem() {
   
   return (
     <div>
+      <Navbar></Navbar>
       <div className="single-item-container">
         <img src={currentItem.imageUrl} alt={currentItem.brand} className="item-image" />
         <div className="item-details">
@@ -58,7 +60,7 @@ export default function SingleItem() {
             onChange={handleSizeChange}
           />
           <p>Selected Size: {selectedSize}</p>
-          <p>Description: {currentItem.description}</p>
+          <p>{currentItem.description}</p>
           <button className="addtocartbutton" onClick={handleAddToCart}>
             Add to Cart
           </button>
@@ -67,7 +69,7 @@ export default function SingleItem() {
       <div className="recommended-items">
         <h3>Recommended Items:</h3>
         {recommendedItems.map((item) => (
-          <Link key={item.id} to={`/${item.id}`} className="recommended-item">
+          <Link key={item.id} to={`/id/${item.id}`} className="recommended-item">
             <img src={item.imageUrl} alt={item.brand} />
             <p>{item.brand}</p>
             <p>${item.price}</p>

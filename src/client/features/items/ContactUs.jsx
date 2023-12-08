@@ -1,74 +1,126 @@
-// ContactUs.js
-import React, { useState } from 'react';
-import './ContactUs.less';
+import React, { useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { ShopContext } from '../cart/ShopContext';
+import { useGetItemQuery } from '../items/itemSlice';
+import { Link } from 'react-router-dom';
+import { selectToken } from '../auth/authSlice';
+import { useSelector } from 'react-redux';
+import Navbar from "../../layout/Navbar";
 
-const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
 
-  // pop up message
-  const [showPopup, setShowPopup] = useState(false);
+function CartItem({ itemId, quantity, size, updateTotalPrice }) {
+  const { removeFromCart } = useContext(ShopContext);
+  const { data: item, isLoading } = useGetItemQuery(itemId);
+  const [currentQuantity, setCurrentQuantity] = useState(quantity);
+  const [totalItemQuantity, setTotalItemQuantity] = useState(quantity);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  useEffect(() => {
+    setTotalItemQuantity(quantity);
+  }, [quantity]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    
-    // 
-    setShowPopup(true);
-
-    // Reset form data
-    setFormData({
-      name: "",
-      email: "",
-      message: "",
-
-    })
-
-  };
-
-  const closePopup = () => {
-    // hides pop-up message
-    setShowPopup(false);
+  if (isLoading) {
+    return <p>Loading . . .</p>;
   }
 
+  if (!item) {
+    return <p>Item not found</p>;
+  }
+
+  const onDelete = () => {
+    removeFromCart(itemId);
+  };
+
+  const increaseQuantity = () => {
+    if (currentQuantity < 10) {
+      setCurrentQuantity(currentQuantity + 1);
+      setTotalItemQuantity(totalItemQuantity + 1);
+      updateTotalPrice(item.price, 1);
+    }
+  };
+
+  const decreaseQuantity = () => {
+    if (currentQuantity > 1) {
+      setCurrentQuantity(currentQuantity - 1);
+      setTotalItemQuantity(totalItemQuantity - 1);
+      updateTotalPrice(item.price, -1)
+    }
+  };
+
   return (
-    <div>
-      <h2>Contact Us</h2>
-      <p>Feel free to reach out to us using the form below or through other contact information.</p>
-
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} />
-
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
-
-        <label htmlFor="message">Message:</label>
-        <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} />
-
-        <button type="submit">Submit</button>
-      </form>
-
-        {/* Popup message */}
-          {showPopup && (
-        <div className="popup">
-          <p>Thank you for your message! We'll be in touch soon.</p>
-          <button onClick={closePopup}>Close</button>
+    <li key={itemId}>
+      <img
+        className="item-cart"
+        src={item.imageUrl}
+        alt={item.brand}
+        style={{ width: '100px', height: '100px' }}
+      />
+      <div>
+        <p>Item ID: {itemId}</p>
+        <p>Brand: {item.brand}</p>
+        <p>Size: {size}</p>
+        <div>
+          <button onClick={decreaseQuantity}>-</button>
+          <span style={{ margin: '0 10px' }}>{currentQuantity}</span>
+          <button onClick={increaseQuantity}>+</button>
         </div>
-          )}
-    </div>
+        <br />
+        <button onClick={onDelete}>Remove from Cart</button>
+      </div>
+    </li>
   );
-};
+}
 
-export default ContactUs;
+function Cart() {
+  const { cartItems } = useContext(ShopContext);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const authToken = useSelector(selectToken);
+
+  const updateTotalPrice = (itemPrice, quantityChange) => {
+    setTotalPrice((prevTotalPrice) => prevTotalPrice + itemPrice * quantityChange);
+  };
+
+  useEffect(() => {
+    const calculateTotalAmount = async () => {
+      let calculatedTotalAmount = 0;
+      for (const [itemId, { quantity }] of Object.entries(cartItems)) {
+        try {
+          // Fetch item details using axios DOWNLOAD AXIOS
+          const response = await axios.get(`/api/items/id/${itemId}`);
+          const item = response.data;
+          calculatedTotalAmount += item.price * quantity;
+        } catch (error) {
+          console.error(`Error fetching item details for itemId ${itemId}:`, error);
+        }
+      }
+      setTotalPrice(calculatedTotalAmount);
+    };
+    calculateTotalAmount();
+  }, [cartItems]);
+
+  if (authToken) {
+    return (
+      <div>
+        <Navbar></Navbar>
+        <h1>Shopping Cart</h1>
+        <ul>
+          {Object.entries(cartItems).map(([itemId, { quantity, size }]) => (
+            <CartItem key={itemId} itemId={itemId} quantity={quantity} size={size} updateTotalPrice={updateTotalPrice} />
+          ))}
+        </ul>
+        <br />
+        <p>Total Amount: ${totalPrice.toFixed(2)} </p>
+        <br />
+        <Link to="/">
+          <button>Continue Shopping</button>
+        </Link>
+        <Link to="/checkout">
+          <button>Proceed to Checkout</button>
+        </Link>
+      </div>
+    );
+  } else {
+    return <p>Please log in or sign up to view your cart</p>;
+  }
+}
+
+export default Cart;

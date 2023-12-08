@@ -6,23 +6,31 @@ import { Link } from 'react-router-dom';
 import './Cart.less';
 import { selectToken } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
+import Navbar from "../../layout/Navbar";
+
+
 function CartItem({ itemId, quantity, size, updateTotalPrice }) {
   const { removeFromCart } = useContext(ShopContext);
   const { data: item, isLoading } = useGetItemQuery(itemId);
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
   const [totalItemQuantity, setTotalItemQuantity] = useState(quantity);
+
   useEffect(() => {
     setTotalItemQuantity(quantity);
   }, [quantity]);
+
   if (isLoading) {
     return <p>Loading . . .</p>;
   }
+
   if (!item) {
     return <p>Item not found</p>;
   }
+
   const onDelete = () => {
     removeFromCart(itemId);
   };
+
   const increaseQuantity = () => {
     if (currentQuantity < 10) {
       setCurrentQuantity(currentQuantity + 1);
@@ -30,6 +38,7 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
       updateTotalPrice(item.price, 1);
     }
   };
+
   const decreaseQuantity = () => {
     if (currentQuantity > 1) {
       setCurrentQuantity(currentQuantity - 1);
@@ -37,6 +46,7 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
       updateTotalPrice(item.price, -1)
     }
   };
+
   return (
     <li key={itemId}>
       <img
@@ -60,13 +70,16 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
     </li>
   );
 }
+
 function Cart() {
   const { cartItems } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const authToken = useSelector(selectToken);
+
   const updateTotalPrice = (itemPrice, quantityChange) => {
     setTotalPrice((prevTotalPrice) => prevTotalPrice + itemPrice * quantityChange);
   };
+
   useEffect(() => {
     const calculateTotalAmount = async () => {
       let calculatedTotalAmount = 0;
@@ -84,9 +97,11 @@ function Cart() {
     };
     calculateTotalAmount();
   }, [cartItems]);
+
   if (authToken) {
     return (
       <div>
+        <Navbar></Navbar>
         <h1>Shopping Cart</h1>
         <ul>
           {Object.entries(cartItems).map(([itemId, { quantity, size }]) => (
@@ -108,4 +123,5 @@ function Cart() {
     return <p>Please log in or sign up to view your cart</p>;
   }
 }
+
 export default Cart;
