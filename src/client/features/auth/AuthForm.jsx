@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation, useRegisterMutation } from "./authSlice";
 import Navbar from "../../layout/Navbar";
+import Navbar from "../../layout/Navbar";
 
 /** This form allows users to register or log in. */
 export default function AuthForm() {
@@ -44,7 +45,7 @@ export default function AuthForm() {
 
   return (
     <>
-    <Navbar></Navbar>
+      <Navbar></Navbar>
       <h1>{authAction}</h1>
       <form onSubmit={attemptAuth}>
         <label>

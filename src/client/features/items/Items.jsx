@@ -4,6 +4,9 @@ import './items.less';
 import HomeNavbar from "../../layout/HomeNavbar";
 import { useState, useEffect } from 'react';
 import imageFullLogo from '../../assets/FullLogo.png';
+import HomeNavbar from "../../layout/HomeNavbar";
+import { useState, useEffect } from 'react';
+import imageFullLogo from '../../assets/FullLogo.png';
 
 export default function Items() {
   const { data: items, isLoading } = useGetItemsQuery();
@@ -20,13 +23,14 @@ export default function Items() {
   }, [items]);
 
   useEffect(() => {
+    // Start the timer when randomShoes are available
     if (randomShoes.length > 1) {
       const timer = setInterval(() => {
         setCurrentRandomShoeIndex((prevIndex) => (prevIndex + 1) % randomShoes.length);
-      }, 5000); 
+      }, 5000); // Change the time interval as needed (in milliseconds)
       setTimerId(timer);
 
-
+      // Clear the timer when the component is unmounted
       return () => {
         clearInterval(timer);
       };
@@ -35,14 +39,14 @@ export default function Items() {
 
   const handleNextClick = () => {
     if (randomShoes.length > 0) {
-      clearInterval(timerId); 
+      clearInterval(timerId); // Clear the timer when manually cycling through
       setCurrentRandomShoeIndex((prevIndex) => (prevIndex + 1) % randomShoes.length);
     }
   };
 
   const handleBackClick = () => {
     if (randomShoes.length > 0) {
-      clearInterval(timerId); 
+      clearInterval(timerId); // Clear the timer when manually cycling through
       setCurrentRandomShoeIndex((prevIndex) => (prevIndex - 1 + randomShoes.length) % randomShoes.length);
     }
   };
