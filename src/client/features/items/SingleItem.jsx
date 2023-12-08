@@ -67,7 +67,7 @@ export default function SingleItem() {
       <div className="recommended-items">
         <h3>Recommended Items:</h3>
         {recommendedItems.map((item) => (
-          <Link key={item.id} to={`/id/${item.id}`} className="recommended-item">
+          <Link key={item.id} to={`/${item.id}`} className="recommended-item">
             <img src={item.imageUrl} alt={item.brand} />
             <p>{item.brand}</p>
             <p>${item.price}</p>

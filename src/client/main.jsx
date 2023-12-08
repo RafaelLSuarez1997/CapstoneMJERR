@@ -12,7 +12,7 @@ import Root from './layout/Root.jsx';
 import SingleItem from './features/items/SingleItem.jsx';
 import ContactUs from './features/items/ContactUs';
 import Cart from './features/cart/Cart.jsx';
-import SpecificItems from './features/items/SpecificItems.jsx';
+// import SpecificItems from './features/items/SpecificItems.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ShopContextProvider } from './features/cart/ShopContext.jsx';
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
     ),
     children: [
       { path: '/', element: <Items /> },
-      { path: '/id/:id', element: <SingleItem /> },
-      { path: "/brand/:brand", element: <SpecificItems /> },
+      { path: '/:id', element: <SingleItem /> },
+      // { path: "/:brand", element: <SpecificItems /> },
       { path: '/contact', element: <ContactUs /> },
       { path: '/login', element: <AuthForm /> },
       { path: '/cart', element: <Cart /> },
