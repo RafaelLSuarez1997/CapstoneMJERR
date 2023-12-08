@@ -1,8 +1,8 @@
-// const { ServerError } = require("../errors");
-// const prisma = require("../prisma");
+ const { ServerError } = require("../errors");
+ const prisma = require("../prisma");
 
-// const router = require("express").Router();
-// module.exports = router;
+ const router = require("express").Router();
+ module.exports = router;
 
 // /** User must be logged in to access tasks. */
 // router.use((req, res, next) => {

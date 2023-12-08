@@ -4,39 +4,122 @@ const router = require("express").Router();
 
 module.exports = router;
 
-//Send all shoes
-router.get("/", async (req, res, next) => {
-    try {
-      const items = await prisma.items.findMany();
-      res.json(items);
-    } catch (err) {
-      next(err);
-    }
+// Get all items
+router.get("/items", async (req, res, next) => {
+  try {
+    const items = await prisma.item.findMany();
+    res.json(items);
+  } catch (err) {
+    next(err);
+  }
 });
 
-// Get shoes by their id
-router.get("/:id", async (req, res, next) => {
+// Get a specific item by ID
+router.get("/items/:itemId", async (req, res, next) => {
   try {
-    const id = +req.params.id;
+    const itemId = +req.params.itemId;
+    const item = await prisma.item.findUnique({
+      where: {
+        id: itemId,
+      },
+    });
 
-    const item = await prisma.items.findUnique({ where: { id } });
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
     res.json(item);
   } catch (err) {
     next(err);
   }
 });
 
-// contact route
-router.post("/contact", async (req, res, next) => {
+// Add an item to the shopping cart
+router.post("/cart/add/:itemId", async (req, res, next) => {
   try {
-    const { name, email, message } = req.body;
+    const itemId = +req.params.itemId;
+    const { quantity } = req.body;
 
-    res.send("Thank you for your message! We'll be in touch soon.")
+    const item = await prisma.item.findUnique({
+      where: {
+        id: itemId,
+      },
+    });
+
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    // Assuming you have a 'cart' model/table in your database
+    const cartItem = await prisma.cart.create({
+      data: {
+        itemId,
+        quantity,
+      },
+    });
+
+    res.status(201).json(cartItem);
   } catch (err) {
     next(err);
   }
 });
 
+// Update the quantity of an item in the shopping cart
+router.put("/cart/update/:cartItemId", async (req, res, next) => {
+  try {
+    const cartItemId = +req.params.cartItemId;
+    const { quantity } = req.body;
+
+    // Assuming you have a 'cart' model/table in your database
+    const updatedCartItem = await prisma.cart.update({
+      where: {
+        id: cartItemId,
+      },
+      data: {
+        quantity,
+      },
+    });
+
+    res.json(updatedCartItem);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Remove an item from the shopping cart
+router.delete("/cart/remove/:cartItemId", async (req, res, next) => {
+  try {
+    const cartItemId = +req.params.cartItemId;
+
+    // Assuming you have a 'cart' model/table in your database
+    await prisma.cart.delete({
+      where: {
+        id: cartItemId,
+      },
+    });
+
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Contact route
+router.post("/contact", async (req, res, next) => {
+  try {
+    const { name, email, message } = req.body;
+
+    // Your contact logic here
+
+    res.status(201).json({ message: "Thank you for your message! We'll be in touch soon." });
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+
+// get by brand
 router.get("/:brand", async (req, res, next) => {
   try {
     const brand = req.params.brand;

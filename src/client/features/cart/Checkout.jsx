@@ -35,7 +35,7 @@ function Checkout() {
     const details = {};
     for (const [itemId, { quantity }] of Object.entries(cartItems)) {
       try {
-        const response = await axios.get(`/api/items/${itemId}`);
+        const response = await axios.get(`/api/items/id/${itemId}`);
         details[itemId] = response.data;
       } catch (error) {
         console.error(`Error fetching item details for itemId ${itemId}:`, error);
@@ -53,7 +53,7 @@ function Checkout() {
     try {
       const itemPrices = await Promise.all(
         Object.entries(cartItems).map(async ([itemId, { quantity }]) => {
-          const response = await axios.get(`/api/items/${itemId}`);
+          const response = await axios.get(`/api/items/id/${itemId}`);
           const item = response.data;
           return item.price * quantity;
         })
@@ -73,6 +73,18 @@ function Checkout() {
 
   const handlePlaceOrder = async () => {
     try {
+
+      // check if shipping info is complete
+      if (!shippingInfo.fullName || !shippingInfo.address) {
+        alert("Please fill in all shipping information")
+        return;
+      }
+      // check if payment info is complete
+      if (!paymentInfo.cardNumber || !paymentInfo.expirationDate) {
+        alert("Please fill in all shipping information")
+        return;
+      }
+
       // generate a random order ID
       const newOrderId = generateRandomOrderId();
   
@@ -96,11 +108,11 @@ function Checkout() {
     }
   };
   
-  // useEffect(() => {
-  //   if (isOrderPlaced && orderId) {
-  //     navigate(`/checkout-message/${orderId}`);
-  //   }
-  // }, [isOrderPlaced, orderId, navigate]);
+  useEffect(() => {
+    if (isOrderPlaced && orderId) {
+      navigate(`/checkout-message/${orderId}`);
+    }
+  }, [isOrderPlaced, orderId, navigate]);
   
   useEffect(() => {
     const fetchTotalAmount = async () => {

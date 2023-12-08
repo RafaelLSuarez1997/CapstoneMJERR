@@ -1,5 +1,4 @@
 const prisma = require('../prisma');
-
 const seed = async () => {
   const item1 = await prisma.items.create({
     data: {
@@ -13,7 +12,6 @@ const seed = async () => {
         'The Nike Dunk Low Photon Dust (W) is made of white leather with Photon Dust leather overlays and Swooshes. A woven Nike label on the tongue and embroidered Nike branding completes the design.'
     }
   });
-
   const item2 = await prisma.items.create({
     data: {
       brand: 'Adidas',
@@ -26,7 +24,6 @@ const seed = async () => {
         'The adidas Campus 00s Core Black is covered in core black and white colorways at the upper, footwear white midsole, and brown outsole. This sneaker is a product of suede, rubber, and leather materials that completes the texture. The adidas Campus 00s Core Black features the adidas logo on the tongue and the heel with campus branding at its quarter.'
     }
   });
-
   const user1 = await prisma.user.create({
     data: {
       username: 'jose',
@@ -50,7 +47,6 @@ const seed = async () => {
       }
     }
   });
-
   const user2 = await prisma.user.create({
     data: {
       username: 'adam',

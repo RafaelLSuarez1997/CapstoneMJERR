@@ -1,19 +1,16 @@
 generator client {
   provider = "prisma-client-js"
 }
-
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
-
 model User {
   id       Int    @id @default(autoincrement())
   username String @unique
   password String
   cart     Cart?
 }
-
 model Items {
   id          Int         @id @default(autoincrement())
   brand       String
@@ -24,7 +21,6 @@ model Items {
   description String
   cart        CartItems[]
 }
-
 model Cart {
   id        Int         @id @default(autoincrement())
   userId    Int @unique
@@ -33,7 +29,6 @@ model Cart {
   items     CartItems[]
   user      User        @relation(fields: [userId], references: [id])
 }
-
 model CartItems {
   id        Int      @id @default(autoincrement())
   cartId    Int
