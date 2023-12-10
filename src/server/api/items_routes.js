@@ -1,3 +1,5 @@
+import { token } from "morgan";
+
 const { ServerError } = require("../errors");
 const prisma = require("../prisma");
 
@@ -25,6 +27,40 @@ router.get("/id/:id", async (req, res, next) => {
     next(err);
   }
 });
+
+
+
+// login user api
+
+router.post("/login", async(req, res) => {
+  const {username, passowrd} = req.body;
+
+  if (!username || !passowrd) {
+    res.status(400).json({error:"Log in"})
+  }; 
+
+  try {
+    const userlogin = await USER.findUnique({username:username});
+    console.log(userlogin);
+
+    if(userlogin){
+      const isMatch = await token.compare(passowrd, userlogin.password);
+      console.log(isMatch);
+
+      if(isMatch){
+        res.status(400).json({error:"Invalid Details"})
+      } else {
+        res.status(201).json({error:"Password Match"})
+      }
+
+    }
+  } catch (error){
+    res.status(400).json({error:"Invalid Details"})
+
+  }
+})
+
+
 
 // contact route
 router.post("/contact", async (req, res, next) => {
