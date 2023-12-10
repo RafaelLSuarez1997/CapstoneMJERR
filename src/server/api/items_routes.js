@@ -33,9 +33,9 @@ router.get("/id/:id", async (req, res, next) => {
 // login user api
 
 router.post("/login", async(req, res) => {
-  const {username, passowrd} = req.body;
+  const {username, password} = req.body;
 
-  if (!username || !passowrd) {
+  if (!username || !password) {
     res.status(400).json({error:"Log in"})
   }; 
 
@@ -44,7 +44,7 @@ router.post("/login", async(req, res) => {
     console.log(userlogin);
 
     if(userlogin){
-      const isMatch = await token.compare(passowrd, userlogin.password);
+      const isMatch = await token.compare(password, userlogin.password);
       console.log(isMatch);
 
       if(isMatch){
