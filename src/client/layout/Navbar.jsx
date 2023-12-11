@@ -23,16 +23,10 @@ export default function Navbar() {
 
   return (
     <nav className="top">
-      <div className="logo">
-        <img className='imglogo'src={image} alt='logo' />
+        <NavLink to="/">
         <img className='imgtext' src={imagetext} alt='logo' />
-      </div>
+        </NavLink>
       <menu>
-        <li>
-        </li>
-        <li>
-          <NavLink to="/">Home</NavLink>
-        </li>
         <li>
           <NavLink to="/contact">Contact Us</NavLink>
         </li>

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Cart.less';
 import { selectToken } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
@@ -75,6 +75,7 @@ function Cart() {
   const { cartItems } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const authToken = useSelector(selectToken);
+  const navigate = useNavigate(); // Use useNavigate hook
 
   const updateTotalPrice = (itemPrice, quantityChange) => {
     setTotalPrice((prevTotalPrice) => prevTotalPrice + itemPrice * quantityChange);
@@ -98,7 +99,7 @@ function Cart() {
     calculateTotalAmount();
   }, [cartItems]);
 
-  if (authToken) {
+  // if (authToken) {
     return (
       <div>
         <Navbar></Navbar>
@@ -114,14 +115,12 @@ function Cart() {
         <Link to="/">
           <button>Continue Shopping</button>
         </Link>
-        <Link to="/checkout">
-          <button>Proceed to Checkout</button>
-        </Link>
+        <button onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
       </div>
     );
-  } else {
-    return <p>Please log in or sign up to view your cart</p>;
-  }
+  // } else {
+  //   return <p>Please log in or sign up to view your cart</p>;
+  // }
 }
 
 export default Cart;

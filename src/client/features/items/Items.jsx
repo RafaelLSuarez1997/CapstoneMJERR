@@ -4,6 +4,7 @@ import './items.less';
 import HomeNavbar from "../../layout/HomeNavbar";
 import { useState, useEffect } from 'react';
 import imageFullLogo from '../../assets/FullLogo.png';
+import NikeLogo from '../../assets/Nike.png';
 
 export default function Items() {
   const { data: items, isLoading } = useGetItemsQuery();
@@ -83,7 +84,7 @@ export default function Items() {
         {randomShoes.length > 1 && (
           <>
             <button onClick={handleBackClick} className="nav-button">
-              Back
+              back
             </button>
             <button onClick={handleNextClick} className="nav-button">
               Next

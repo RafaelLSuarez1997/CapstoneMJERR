@@ -21,6 +21,7 @@ model Items {
   description String
   cart        CartItems[]
 }
+
 model Cart {
   id        Int         @id @default(autoincrement())
   userId    Int @unique
