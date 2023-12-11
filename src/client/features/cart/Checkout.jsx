@@ -35,7 +35,7 @@ function Checkout() {
     const details = {};
     for (const [itemId, { quantity }] of Object.entries(cartItems)) {
       try {
-        const response = await axios.get(`/api/items/id/${itemId}`);
+        const response = await axios.get(`/api/items/${itemId}`);
         details[itemId] = response.data;
       } catch (error) {
         console.error(`Error fetching item details for itemId ${itemId}:`, error);
