@@ -29,6 +29,7 @@ model Cart {
   items     CartItems[]
   user      User        @relation(fields: [userId], references: [id])
 }
+
 model CartItems {
   id        Int      @id @default(autoincrement())
   cartId    Int

@@ -86,7 +86,7 @@ function Cart() {
       for (const [itemId, { quantity }] of Object.entries(cartItems)) {
         try {
           // Fetch item details using axios DOWNLOAD AXIOS
-          const response = await axios.get(`/api/items/id/${itemId}`);
+          const response = await axios.get(`/api/items/${itemId}`);
           const item = response.data;
           calculatedTotalAmount += item.price * quantity;
         } catch (error) {
@@ -120,13 +120,7 @@ function Cart() {
       </div>
     );
   } else {
-    return(
-    <div>
-      <Navbar></Navbar>
-      <p>Please log in or sign up to view your cart</p>;
-    </div>
-    );
-
+    return <p>Please log in or sign up to view your cart</p>;
   }
 }
 

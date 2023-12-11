@@ -65,7 +65,7 @@ export default function Items() {
         <img className='imgFullLogo' src={imageFullLogo} alt='logo' />
 
         {randomShoes.length > 0 && (
-          <Link to={`/id/${randomShoes[currentRandomShoeIndex].id}`} className="random-shoe-link">
+          <Link to={`/${randomShoes[currentRandomShoeIndex].id}`} className="random-shoe-link">
             <div className="random-shoe-container">
               <img
                 src={randomShoes[currentRandomShoeIndex].imageUrl}
@@ -93,11 +93,21 @@ export default function Items() {
       </div>
 
       <div className="brand-links">
-        {uniqueBrands.map(brand =>
+        {uniqueBrands.map(brand => (
           <Link key={brand} to={`/brand/${brand}`} className="brand-link">
-            {brand}
+            <div className="brand-link-container">
+              <img
+                src={items.find(item => item.brand === brand)?.imageUrl || 'default-image-url'}
+                alt={`${brand} logo`}
+                className="brand-image"
+              />
+              {brand}
+            </div>
           </Link>
-        )}
+        ))}
+      </div>
+
+      <div className="items-container">
       </div>
     </div>
   );
