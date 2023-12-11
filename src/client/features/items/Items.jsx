@@ -4,9 +4,6 @@ import './items.less';
 import HomeNavbar from "../../layout/HomeNavbar";
 import { useState, useEffect } from 'react';
 import imageFullLogo from '../../assets/FullLogo.png';
-import HomeNavbar from "../../layout/HomeNavbar";
-import { useState, useEffect } from 'react';
-import imageFullLogo from '../../assets/FullLogo.png';
 
 export default function Items() {
   const { data: items, isLoading } = useGetItemsQuery();

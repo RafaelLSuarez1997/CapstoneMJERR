@@ -120,12 +120,13 @@ function Cart() {
       </div>
     );
   } else {
-    return (
+    return(
     <div>
       <Navbar></Navbar>
       <p>Please log in or sign up to view your cart</p>;
-      </div>
-    )
+    </div>
+    );
+
   }
 }
 
