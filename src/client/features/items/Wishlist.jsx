@@ -40,17 +40,6 @@ const Wishlist = () => {
           </li>
         ))}
       </ul>
-      <h2>Your Cart</h2>
-      <ul>
-        {Object.entries(cartItems).map(([itemId, { quantity, size }]) => (
-          <li key={itemId}>
-            <p>Item ID: {itemId}</p>
-            <p>Quantity: {quantity}</p>
-            <p>Size: {size}</p>
-            <button onClick={() => addToWishlistHandler(itemId)}>Add to Wishlist</button>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
