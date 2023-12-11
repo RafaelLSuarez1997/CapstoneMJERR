@@ -38,19 +38,23 @@ export default function Navbar() {
         <li>
           <NavLink to="/contact">Contact Us</NavLink>
         </li>
-        {token
-          ? <li>
-              <a onClick={handleLogout}>Log Out</a>
-            </li>
-          : <li>
-              <NavLink to="/login">Log In</NavLink>
-            </li>}
+        <li>
+          {/* New link to the wishlist */}
+          <NavLink to="/wishlist">Wishlist</NavLink>
+        </li>
+        {token ? (
+          <li>
+            <a onClick={handleLogout}>Log Out</a>
+          </li>
+        ) : (
+          <li>
+            <NavLink to="/login">Log In</NavLink>
+          </li>
+        )}
         <li>
           <NavLink to="/cart">
             <ShoppingCart size={20} />
-            <span>
-              {cartCount}
-            </span>
+            <span>{cartCount}</span>
           </NavLink>
         </li>
       </menu>

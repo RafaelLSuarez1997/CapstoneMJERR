@@ -1,56 +1,69 @@
-// controllers/wishlistController.js
+// wishlistController.js
 
-const prisma = require('../prisma'); // Update the path
+const prisma = require('../prisma');
 
-const addToWishlist = async (req, res, next) => {
+// Add item to wishlist
+exports.addToWishlist = async (req, res, next) => {
   try {
     const { userId, itemId } = req.body;
-    const wishlistItem = await prisma.wishlist.create({
-      data: {
-        userId,
-        itemId,
-      },
+
+    // Check if the item is already in the wishlist
+    const existingWishlistItem = await prisma.wishlist.findUnique({
+      where: { userId, itemId },
     });
-    res.json(wishlistItem);
-  } catch (error) {
-    next(error);
+
+    if (!existingWishlistItem) {
+      // If not, add it to the wishlist
+      await prisma.wishlist.create({
+        data: {
+          userId,
+          itemId,
+        },
+      });
+
+      res.json({ message: 'Item added to wishlist successfully' });
+    } else {
+      res.status(400).json({ message: 'Item is already in the wishlist' });
+    }
+  } catch (err) {
+    next(err);
   }
 };
 
-const removeFromWishlist = async (req, res, next) => {
+// Remove item from wishlist
+exports.removeFromWishlist = async (req, res, next) => {
   try {
     const { userId, itemId } = req.body;
+
+    // Remove the item from the wishlist in the database
     await prisma.wishlist.deleteMany({
       where: {
         userId,
         itemId,
       },
     });
+
     res.json({ message: 'Item removed from wishlist successfully' });
-  } catch (error) {
-    next(error);
+  } catch (err) {
+    next(err);
   }
 };
 
-const getUserWishlist = async (req, res, next) => {
+// Get user's wishlist
+exports.getUserWishlist = async (req, res, next) => {
   try {
-    const { userId } = req.params;
+    const userId = req.params.userId;
+    console.log('Fetching wishlist for userId:', userId);
+
+    // Fetch wishlist items for a specific user from the database
     const wishlistItems = await prisma.wishlist.findMany({
       where: {
         userId,
       },
-      include: {
-        item: true,
-      },
     });
-    res.json(wishlistItems);
-  } catch (error) {
-    next(error);
-  }
-};
 
-module.exports = {
-  addToWishlist,
-  removeFromWishlist,
-  getUserWishlist,
+    res.status(200).json({ wishlistItems });
+  } catch (err) {
+    next(err);
+  }
 };

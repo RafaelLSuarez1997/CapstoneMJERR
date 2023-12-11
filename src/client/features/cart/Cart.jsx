@@ -7,7 +7,7 @@ import './Cart.less';
 import { selectToken } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
 
-function CartItem({ itemId, quantity, size, updateTotalPrice }) {
+function CartItem({ itemId, quantity, size, updateTotalPrice, addToWishlist, removeFromWishlist }) {
   const { removeFromCart } = useContext(ShopContext);
   const { data: item, isLoading } = useGetItemQuery(itemId);
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
@@ -41,7 +41,37 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
     if (currentQuantity > 1) {
       setCurrentQuantity(currentQuantity - 1);
       setTotalItemQuantity(totalItemQuantity - 1);
-      updateTotalPrice(item.price, -1)
+      updateTotalPrice(item.price, -1);
+    }
+  };
+
+  const handleAddToWishlist = async () => {
+    try {
+      // Assuming that userId is accessible in your component
+      const userId = '...'; // Replace with the actual user ID
+
+      // Call the addToWishlist function from your API
+      await addToWishlist({ userId, itemId });
+
+      // You may add a confirmation message or update the UI as needed
+      console.log('Added to Wishlist:', itemId);
+    } catch (error) {
+      console.error('Error adding to Wishlist:', error);
+    }
+  };
+
+  const handleRemoveFromWishlist = async () => {
+    try {
+      // Assuming that userId is accessible in your component
+      const userId = '...'; // Replace with the actual user ID
+
+      // Call the removeFromWishlist function from your API
+      await removeFromWishlist({ userId, itemId });
+
+      // You may add a confirmation message or update the UI as needed
+      console.log('Removed from Wishlist:', itemId);
+    } catch (error) {
+      console.error('Error removing from Wishlist:', error);
     }
   };
 
@@ -64,11 +94,12 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
         </div>
         <br />
         <button onClick={onDelete}>Remove from Cart</button>
+        <button onClick={handleAddToWishlist}>Add to Wishlist</button>
+        <button onClick={handleRemoveFromWishlist}>Remove from Wishlist</button>
       </div>
     </li>
   );
 }
-
 function Cart() {
   const { cartItems } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);

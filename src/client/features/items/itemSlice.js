@@ -43,6 +43,30 @@ const itemsApi = api.injectEndpoints({
       query: brand => `/items/brand/${brand}`,
       providesTags: ['ItemsByBrand']
     }),
+    getWishlist: builder.query({
+      query: () => '/wishlist',
+      providesTags: ['Wishlist']
+    }),
+    addToWishlist: builder.mutation({
+      query: ({ userId, itemId }) => ({
+        url: '/wishlist/add',
+        method: 'POST',
+        body: { userId, itemId }
+      }),
+      invalidatesTags: ['Wishlist']
+    }),
+    removeFromWishlist: builder.mutation({
+      query: ({ userId, itemId }) => ({
+        url: '/wishlist/remove',
+        method: 'POST',
+        body: { userId, itemId }
+      }),
+      invalidatesTags: ['Wishlist']
+    }),
+    getUserWishlist: builder.query({
+      query: userId => `/wishlist/user/${userId}`,
+      providesTags: ['Wishlist']
+    }),
   })
 });
 
@@ -52,5 +76,9 @@ export const {
   useCreateItemMutation,
   useEditItemMutation,
   useDeleteItemMutation,
-  useGetItemsByBrandQuery
+  useGetItemsByBrandQuery,
+  useGetWishlistQuery,
+  useAddToWishlistMutation,
+  useRemoveFromWishlistMutation,
+  useGetUserWishlistQuery,
 } = itemsApi;

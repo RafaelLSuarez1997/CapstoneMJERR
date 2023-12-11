@@ -1,3 +1,5 @@
+// app.js
+
 const express = require('express');
 const morgan = require('morgan');
 const { createServer: createViteServer } = require('vite');
@@ -26,6 +28,8 @@ const createApp = async () => {
 
   // Include wishlist routes
   app.use('/wishlist', require('./wishlistRoutes'));
+
+  // ... other routes ...
 
   // Simple error handling middleware
   app.use((err, req, res, next) => {
