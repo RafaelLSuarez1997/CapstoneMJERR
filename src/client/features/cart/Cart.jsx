@@ -49,8 +49,9 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
 
   return (
     <li key={itemId}>
-      <img src={item.imageUrl} alt={item.name} />
+      <img className='cartImg' src={item.imageUrl} alt={item.name} />
       <div>
+        <div className='cartData'></div>
         <h3>{item.name}</h3>
         <p>Item ID: {itemId}</p>
         <p>Brand: {item.brand}</p>
