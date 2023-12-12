@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import './Cart.less';
 import { selectToken } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
 import Navbar from "../../layout/Navbar";
-
+import ShopCartItems from './CartItems';
 
 function CartItem({ itemId, quantity, size, updateTotalPrice }) {
   const { removeFromCart } = useContext(ShopContext);
@@ -43,7 +43,7 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
     if (currentQuantity > 1) {
       setCurrentQuantity(currentQuantity - 1);
       setTotalItemQuantity(totalItemQuantity - 1);
-      updateTotalPrice(item.price, -1)
+      updateTotalPrice(item.price, -1);
     }
   };
 
@@ -75,7 +75,7 @@ function Cart() {
   const { cartItems } = useContext(ShopContext);
   const [totalPrice, setTotalPrice] = useState(0);
   const authToken = useSelector(selectToken);
-  const navigate = useNavigate(); // Use useNavigate hook
+  const navigate = useNavigate();
 
   const updateTotalPrice = (itemPrice, quantityChange) => {
     setTotalPrice((prevTotalPrice) => prevTotalPrice + itemPrice * quantityChange);
@@ -86,7 +86,6 @@ function Cart() {
       let calculatedTotalAmount = 0;
       for (const [itemId, { quantity }] of Object.entries(cartItems)) {
         try {
-          // Fetch item details using axios DOWNLOAD AXIOS
           const response = await axios.get(`/api/items/${itemId}`);
           const item = response.data;
           calculatedTotalAmount += item.price * quantity;
@@ -99,28 +98,25 @@ function Cart() {
     calculateTotalAmount();
   }, [cartItems]);
 
-  // if (authToken) {
-    return (
-      <div>
-        <Navbar></Navbar>
-        <h1>Shopping Cart</h1>
-        <ul>
-          {Object.entries(cartItems).map(([itemId, { quantity, size }]) => (
-            <CartItem key={itemId} itemId={itemId} quantity={quantity} size={size} updateTotalPrice={updateTotalPrice} />
-          ))}
-        </ul>
-        <br />
-        <p>Total Amount: ${totalPrice.toFixed(2)} </p>
-        <br />
-        <Link to="/">
-          <button>Continue Shopping</button>
-        </Link>
-        <button onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
-      </div>
-    );
-  // } else {
-  //   return <p>Please log in or sign up to view your cart</p>;
-  // }
+  return (
+    <div>
+      <Navbar />
+      <h1>Shopping Cart</h1>
+      <ShopCartItems />
+      <ul>
+        {Object.entries(cartItems).map(([itemId, { quantity, size }]) => (
+          <CartItem key={itemId} itemId={itemId} quantity={quantity} size={size} updateTotalPrice={updateTotalPrice} />
+        ))}
+      </ul>
+      <br />
+      <p>Total Amount: ${totalPrice.toFixed(2)} </p>
+      <br />
+      <Link to="/">
+        <button>Continue Shopping</button>
+      </Link>
+      <button onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
+    </div>
+  );
 }
 
 export default Cart;

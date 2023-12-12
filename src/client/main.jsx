@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom/client';
 import './index.less';
 
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './store/store.js';
 
 import AuthForm from './features/auth/AuthForm';
 import Items from './features/items/Items.jsx';

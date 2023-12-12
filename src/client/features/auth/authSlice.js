@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from "../../store/api";
 
+
 /** Authentication endpoints */
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -20,10 +21,19 @@ const authApi = api.injectEndpoints({
       }),
       transformErrorResponse: (response) => response.data,
     }),
+
+    cart: builder.mutation({
+      query: (credentials) => ({
+        url: "/auth/cart",
+        method: "POST",
+        body: credentials,
+      }),
+      transformErrorResponse: (response) => response.data,
+    }),
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = authApi;
+export const { useRegisterMutation, useLoginMutation, useCartMutation } = authApi;
 
 /** Session storage key for auth token */
 const TOKEN_KEY = "token";
