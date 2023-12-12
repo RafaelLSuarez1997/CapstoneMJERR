@@ -4,14 +4,12 @@ import { useGetItemQuery, useGetItemsQuery } from "./itemSlice";
 import "./Singleitem.less";
 import { ShopContext } from "../cart/ShopContext";
 
-
-
 export default function SingleItem() {
   const { id } = useParams();
   const { data: currentItem, isLoading: isItemLoading } = useGetItemQuery(id);
   const { data: allItems, isLoading: isAllItemsLoading } = useGetItemsQuery();
+  const { addToCart, handleAddToWishlist: contextAddToWishlist } = useContext(ShopContext); // Aliased the context function
   const [selectedSize, setSelectedSize] = useState(0);
-  const { addToCart } = useContext(ShopContext);
   const [recommendedItems, setRecommendedItems] = useState([]);
 
   useEffect(() => {
@@ -35,14 +33,12 @@ export default function SingleItem() {
     addToCart(currentItem.id, selectedSize);
   };
 
-  const handleAddToWishlist = () => {
-    // Add logic to send a request to your API endpoint for adding to the wishlist
-    console.log('Added to Wishlist:', currentItem.id);
-  };
-
-  const handleRemoveFromWishlist = () => {
-    // Add logic to send a request to your API endpoint for removing from the wishlist
-    console.log('Removed from Wishlist:', currentItem.id);
+  const localHandleAddToWishlist = () => {
+    contextAddToWishlist({
+      id: currentItem.id,
+      quantity: 1,
+      size: selectedSize
+    });
   };
 
   if (isItemLoading || isAllItemsLoading) {
@@ -77,11 +73,8 @@ export default function SingleItem() {
           <button className="addtocartbutton" onClick={handleAddToCart}>
             Add to Cart
           </button>
-          <button className="wishlist-button" onClick={handleAddToWishlist}>
+          <button className="wishlist-button" onClick={localHandleAddToWishlist}>
             Add to Wishlist
-          </button>
-          <button className="wishlist-button" onClick={handleRemoveFromWishlist}>
-            Remove from Wishlist
           </button>
         </div>
       </div>

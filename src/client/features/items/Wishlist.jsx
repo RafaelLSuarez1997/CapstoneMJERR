@@ -1,44 +1,35 @@
-import React, { useState, useContext, useEffect } from "react"; // Import useEffect
+import React, { useContext, useEffect } from "react";
 import { ShopContext } from "../cart/ShopContext";
 
 const Wishlist = () => {
-  const { cartItems, addToWishlist, removeFromWishlist } = useContext(ShopContext);
-  const [wishlistItems, setWishlistItems] = useState({});
-
-  // Copy cart items to the wishlist
-  const syncWishlist = () => {
-    setWishlistItems({ ...cartItems });
-  };
-
-  // Add an item to the wishlist
-  const addToWishlistHandler = (itemId) => {
-    addToWishlist(itemId);
-    syncWishlist();
-  };
-
-  // Remove an item from the wishlist
-  const removeFromWishlistHandler = (itemId) => {
-    removeFromWishlist(itemId);
-    syncWishlist();
-  };
+  const { wishlistItems, removeFromWishlist } = useContext(ShopContext);
 
   // Use useEffect to log the wishlistItems whenever it changes
   useEffect(() => {
     console.log("Wishlist Items:", wishlistItems);
   }, [wishlistItems]);
 
+  // Check if wishlistItems is an array before mapping
+  const renderWishlistItems = () => {
+    if (Array.isArray(wishlistItems)) {
+      return wishlistItems.map(item => (
+        <li key={item.id}>
+          <p>Item ID: {item.id}</p>
+          <p>Quantity: {item.quantity}</p>
+          <p>Size: {item.size}</p>
+          <button onClick={() => removeFromWishlist(item.id)}>Remove from Wishlist</button>
+        </li>
+      ));
+    } else {
+      return <p>Your wishlist is empty.</p>;
+    }
+  };
+
   return (
     <div>
       <h1>Wishlist</h1>
       <ul>
-        {Object.entries(wishlistItems).map(([itemId, { quantity, size }]) => (
-          <li key={itemId}>
-            <p>Item ID: {itemId}</p>
-            <p>Quantity: {quantity}</p>
-            <p>Size: {size}</p>
-            <button onClick={() => removeFromWishlistHandler(itemId)}>Remove from Wishlist</button>
-          </li>
-        ))}
+        {renderWishlistItems()}
       </ul>
     </div>
   );

@@ -15,20 +15,24 @@ const getDefaultCart = () => {
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
   const [cartCount, setCartCount] = useState(0);
+  const [wishlistItems, setWishlistItems] = useState([]);
+  const CURRENT_USER_ID = "your-current-user-id";
 
-  const handleAddToWishlist = async (currentItem) => {
+  const handleAddToWishlist = async (item) => {
     try {
-      await axios.post('/wishlist/add', { userId: CURRENT_USER_ID, itemId: currentItem.id });
-      console.log('Added to Wishlist:', currentItem.id);
+      await axios.post('/wishlist/add', { userId: CURRENT_USER_ID, itemId: item.id });
+      setWishlistItems(prevItems => [...prevItems, item]);
+      console.log('Added to Wishlist:', item.id);
     } catch (error) {
       console.error('Error adding to Wishlist:', error);
     }
   };
 
-  const handleRemoveFromWishlist = async (currentItem) => {
+  const handleRemoveFromWishlist = async (itemId) => {
     try {
-      await axios.post('/wishlist/remove', { userId: CURRENT_USER_ID, itemId: currentItem.id });
-      console.log('Removed from Wishlist:', currentItem.id);
+      await axios.post('/wishlist/remove', { userId: CURRENT_USER_ID, itemId });
+      setWishlistItems(prevItems => prevItems.filter(item => item.id !== itemId));
+      console.log('Removed from Wishlist:', itemId);
     } catch (error) {
       console.error('Error removing from Wishlist:', error);
     }
@@ -52,7 +56,6 @@ export const ShopContextProvider = (props) => {
         },
       };
 
-      // removes the entire item when the quantity reaches 0
       if (updatedCart[itemId].quantity <= 0) {
         delete updatedCart[itemId];
       }
@@ -74,9 +77,9 @@ export const ShopContextProvider = (props) => {
     addToCart,
     removeFromCart,
     clearCart,
+    wishlistItems,
     handleAddToWishlist,
     handleRemoveFromWishlist,
-    // added clear cart to reset order placement
   };
 
   return (
