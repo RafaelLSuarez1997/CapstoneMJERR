@@ -1,26 +1,24 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
-import { Link } from 'react-router-dom';
-import './Cart.less';
 import { selectToken } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
-import Navbar from "../../layout/Navbar";
-
+import './Cart.less';
 
 function CartItem({ itemId, quantity, size, updateTotalPrice }) {
   const { removeFromCart } = useContext(ShopContext);
   const { data: item, isLoading } = useGetItemQuery(itemId);
   const [currentQuantity, setCurrentQuantity] = useState(quantity);
-  const [totalItemQuantity, setTotalItemQuantity] = useState(quantity);
+
 
   useEffect(() => {
-    setTotalItemQuantity(quantity);
+    setCurrentQuantity(quantity);
   }, [quantity]);
 
   if (isLoading) {
-    return <p>Loading . . .</p>;
+    return <p>Loading...</p>;
   }
 
   if (!item) {
@@ -49,20 +47,16 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
 
   return (
     <li key={itemId}>
-      <img
-        className="item-cart"
-        src={item.imageUrl}
-        alt={item.brand}
-        style={{ width: '100px', height: '100px' }}
-      />
+      <img src={item.imageUrl} alt={item.name} />
       <div>
+        <h3>{item.name}</h3>
         <p>Item ID: {itemId}</p>
         <p>Brand: {item.brand}</p>
         <p>Size: {size}</p>
         <div>
-          <button onClick={decreaseQuantity}>-</button>
+          <button onClick={() => handleQuantityChange(-1)}>-</button>
           <span style={{ margin: '0 10px' }}>{currentQuantity}</span>
-          <button onClick={increaseQuantity}>+</button>
+          <button onClick={() => handleQuantityChange(1)}>+</button>
         </div>
         <br />
         <button onClick={onDelete}>Remove from Cart</button>
@@ -83,6 +77,7 @@ function Cart() {
   useEffect(() => {
     const calculateTotalAmount = async () => {
       let calculatedTotalAmount = 0;
+
       for (const [itemId, { quantity }] of Object.entries(cartItems)) {
         try {
           // Fetch item details using axios DOWNLOAD AXIOS
@@ -90,11 +85,13 @@ function Cart() {
           const item = response.data;
           calculatedTotalAmount += item.price * quantity;
         } catch (error) {
-          console.error(`Error fetching item details for itemId ${itemId}:`, error);
+          console.error(`Error fetching item with ID ${itemId}:`, error);
         }
       }
+
       setTotalPrice(calculatedTotalAmount);
     };
+
     calculateTotalAmount();
   }, [cartItems]);
 
@@ -109,7 +106,7 @@ function Cart() {
           ))}
         </ul>
         <br />
-        <p>Total Amount: ${totalPrice.toFixed(2)} </p>
+        <p>Total Amount: ${totalPrice.toFixed(2)}</p>
         <br />
         <Link to="/">
           <button>Continue Shopping</button>
