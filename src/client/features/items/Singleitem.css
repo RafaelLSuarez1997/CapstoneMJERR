@@ -4,8 +4,8 @@
   align-items: flex-start;
 
   .item-details {
-    max-width: 400px;
-    padding: 20px;
+    max-width: 800px;
+    padding: 60px;
 
     .item-brand {
       font-size: 24px;
@@ -33,7 +33,7 @@
     }
 
     .addtocartbutton {
-      background-color: #3498db;
+      background-color: #e00707c5;
       color: #fff;
       padding: 10px;
       font-size: 18px;
@@ -41,20 +41,19 @@
       margin-top: 16px;
 
       &:hover {
-        background-color: #2980b9;
+        background-color: #640101;
       }
     }
   }
 
   .item-image {
-    max-width: 300px;
+    max-width: 600px;
     height: auto; 
     
   }
 }
 
 .recommended-items {
-  margin-top: 40px;
 
   h3 {
     font-size: 24px;
@@ -62,9 +61,11 @@
   }
 
   .recommended-item {
+    border: 1px solid #ccc; /* Border around each brand */
+    border-radius: 8px; /* Add some border-radius for rounded corners */
+    box-shadow: 6px 6px 5px  rgba(250, 0, 0, 0.2); /* Example of a shadow */
     display: inline-block;
     margin-right: 20px;
-    padding: 2%;
     transition: transform 0.2s ease-in-out;
 
     &:hover {
@@ -74,7 +75,9 @@
     }
 
     img {
-      max-width: 86px;
+      border: 1px solid #ccc; /* Border around each brand */
+      border-radius: 8px; /* Add some border-radius for rounded corners */
+      max-width: 183.6px;
       height: auto;
     }
 

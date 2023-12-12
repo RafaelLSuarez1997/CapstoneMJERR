@@ -48,31 +48,3 @@ router.get("/brand/:brand", async (req, res, next) => {
     next(err);
   }
 });
-
-// Get user's cart
-router.get("/cart/:userId", async (req, res, next) => {
-  try {
-    const userId = +req.params.userId;
-
-    // Fetch the user with their cart and associated items
-    const userWithCart = await prisma.user.findUnique({
-      where: { id: userId },
-      include: {
-        cart: {
-          include: {
-            items: true,
-          },
-        },
-      },
-    });
-
-    if (!userWithCart) {
-      // If the user is not found, return an error
-      throw new ServerError(404, "User not found");
-    }
-
-    res.json(userWithCart.cart);
-  } catch (err) {
-    next(err);
-  }
-});

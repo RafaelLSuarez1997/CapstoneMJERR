@@ -1,0 +1,121 @@
+a:hover {
+  text-decoration: none; /* Removes underline on hover */
+  text-decoration-color: black;
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 80px;
+}
+
+.imgFullLogo {
+  max-width: 500px;
+  margin-right: 200px;
+  padding-left: 20px;
+}
+
+.random-shoe-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.random-shoe-section {
+  display: flex;
+  align-items: center;
+}
+
+.random-shoe-container {
+  background-color: #ffffff;
+  width: 700px; /* Set your desired width */
+  height: 400px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc; /* Border around each brand */
+  border-radius: 8px; /* Add some border-radius for rounded corners */
+  box-shadow: 6px 6px 5px  rgba(250, 0, 0, 0.2); /* Example of a shadow */
+}
+.random-shoe-text {
+  font-size: 30px;
+  margin-left: 20px; /* Space between image and text */
+  text-align: center;
+}
+
+.random-shoe-text .brand, .random-shoe-text .price {
+  height: auto;
+  width: 400px;
+  font-size: 50px;
+}
+
+.random-shoe-image {
+ height: auto;
+ width: 300px;
+}
+
+.random-shoe-details {
+  text-align: left;
+}
+
+.brand, .price {
+  margin: 0;
+}
+
+.nav-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* Increase the size of the arrow */
+  color: #333; /* Change the color as needed */
+}
+
+.nav-button.back-button {
+  margin-right: 20px;
+}
+
+.nav-button.next-button {
+  margin-left: 20px;
+}
+
+
+.brand-container {
+  border: 1px solid #ddd; /* Border around all brands */
+  padding: 16px; /* Add padding for spacing */
+  background-color: #f8f8f8; /* Add a light background color */
+}
+
+.brand-links {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+
+.brand-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+  margin-bottom: 20px; /* Spacing between each brand */
+  padding: 10px; /* Padding for each brand box */
+  box-shadow: 6px 6px 5px rgba(250, 0, 0, 0.2); /* Example of a shadow */
+  border-radius: 10px; /* Rounded corners */
+  background-color: #fff; /* Background color for each brand box */
+  transition: transform 0.2s ease-in-out;
+}
+
+
+.brand-link img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 8px;
+}
+
+.brand-link span {
+  font-size: 14px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 16px;
+}

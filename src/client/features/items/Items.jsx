@@ -1,10 +1,9 @@
 import { useGetItemsQuery } from './itemSlice';
 import { Link } from 'react-router-dom';
-import './items.less';
-import HomeNavbar from "../../layout/HomeNavbar";
+import './items.css';
 import { useState, useEffect } from 'react';
-import imageFullLogo from '../../assets/FullLogo.png';
-import NikeLogo from '../../assets/Nike.png';
+import imageFullLogo from '../../assets/logoimage.png';
+
 
 export default function Items() {
   const { data: items, isLoading } = useGetItemsQuery();
@@ -14,18 +13,17 @@ export default function Items() {
 
   useEffect(() => {
     if (items && items.length > 0) {
-      const randomIndexes = Array.from({ length: 10 }, () => Math.floor(Math.random() * items.length));
+      const randomIndexes = Array.from({ length: 4 }, () => Math.floor(Math.random() * items.length));
       const randomShoesList = randomIndexes.map(index => items[index]);
       setRandomShoes(randomShoesList);
     }
   }, [items]);
 
   useEffect(() => {
-    // Start the timer when randomShoes are available
     if (randomShoes.length > 1) {
       const timer = setInterval(() => {
         setCurrentRandomShoeIndex((prevIndex) => (prevIndex + 1) % randomShoes.length);
-      }, 5000); // Change the time interval as needed (in milliseconds)
+      }, 5000); //in milliseconds
       setTimerId(timer);
 
       // Clear the timer when the component is unmounted
@@ -35,16 +33,16 @@ export default function Items() {
     }
   }, [randomShoes]);
 
+  // Clear the timer
   const handleNextClick = () => {
     if (randomShoes.length > 0) {
-      clearInterval(timerId); // Clear the timer when manually cycling through
+      clearInterval(timerId); 
       setCurrentRandomShoeIndex((prevIndex) => (prevIndex + 1) % randomShoes.length);
     }
   };
-
   const handleBackClick = () => {
     if (randomShoes.length > 0) {
-      clearInterval(timerId); // Clear the timer when manually cycling through
+      clearInterval(timerId);
       setCurrentRandomShoeIndex((prevIndex) => (prevIndex - 1 + randomShoes.length) % randomShoes.length);
     }
   };
@@ -61,54 +59,41 @@ export default function Items() {
 
   return (
     <div>
-      <HomeNavbar></HomeNavbar>
       <div className="header-container">
         <img className='imgFullLogo' src={imageFullLogo} alt='logo' />
 
+        <button onClick={handleBackClick} className="nav-button"> &#8592;</button>
+
         {randomShoes.length > 0 && (
           <Link to={`/${randomShoes[currentRandomShoeIndex].id}`} className="random-shoe-link">
-            <div className="random-shoe-container">
-              <img
-                src={randomShoes[currentRandomShoeIndex].imageUrl}
-                alt={randomShoes[currentRandomShoeIndex].brand}
-                className="random-shoe-image"
-              />
-              <div className="random-shoe-details">
-                <p className="brand">{randomShoes[currentRandomShoeIndex].brand}</p>
-                <p className="price">${randomShoes[currentRandomShoeIndex].price}</p>
-              </div>
+          <div className="random-shoe-container">
+            <img
+              src={randomShoes[currentRandomShoeIndex].imageUrl}
+              alt={randomShoes[currentRandomShoeIndex].brand}
+              className="random-shoe-image"
+            />
+            <div className="random-shoe-text">
+              <p className="brand">{randomShoes[currentRandomShoeIndex].brand}</p>
+              <p className="price">${randomShoes[currentRandomShoeIndex].price}</p>
             </div>
-          </Link>
+          </div>
+        </Link>
         )}
 
         {randomShoes.length > 1 && (
           <>
-            <button onClick={handleBackClick} className="nav-button">
-              back
-            </button>
-            <button onClick={handleNextClick} className="nav-button">
-              Next
-            </button>
+            <button onClick={handleNextClick} className="nav-button">&#8594;</button>
           </>
         )}
       </div>
-
+        <h2>Our Brands</h2>
       <div className="brand-links">
         {uniqueBrands.map(brand => (
-          <Link key={brand} to={`/brand/${brand}`} className="brand-link">
-            <div className="brand-link-container">
-              <img
-                src={items.find(item => item.brand === brand)?.imageUrl || 'default-image-url'}
-                alt={`${brand} logo`}
-                className="brand-image"
-              />
-              {brand}
-            </div>
-          </Link>
+        <Link key={brand} to={`/brand/${brand}`} className="brand-link">
+          <img src={items.find(item => item.brand === brand)?.imageUrl || 'default-image-url'} alt={brand} />
+          <span>{brand}</span>
+        </Link>
         ))}
-      </div>
-
-      <div className="items-container">
       </div>
     </div>
   );

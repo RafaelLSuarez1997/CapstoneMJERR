@@ -225,17 +225,6 @@ const seed = async () => {
     }
   });
   
-  const item22 = await prisma.items.create({
-    data: {
-      brand: 'Nike',
-      category: 'Hulk feet',
-      imageUrl:'https://img.ltwebstatic.com/images3_pi/2023/09/07/d4/16940637933a5c5749ed2a8a34cc864324955e9ff4_thumbnail_600x.webp',
-      size: 0.0,
-      price: 45.99,
-      description:'Hulk feet bruh'
-    }
-  });
-  
   const item23 = await prisma.items.create({
     data: {
       brand: 'Adidas',
@@ -247,16 +236,7 @@ const seed = async () => {
     }
   });
   
-  const item24 = await prisma.items.create({
-    data: {
-      brand: 'Jordan',
-      category: 'Croc',
-      imageUrl:'https://img.ssensemedia.com/images/f_auto,q_auto:best/241477F121032_3/jw-anderson-green-wellipets-edition-frog-loafers.jpg',
-      size: 0.0,
-      price: 6000.00,
-      description:'ribbit ribbit'
-    }
-  });
+
 
   const user1 = await prisma.user.create({
     data: {

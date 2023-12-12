@@ -21,12 +21,17 @@ export default function Navbar() {
     navigate('/');
   };
 
+
   return (
     <nav className="top">
+      
         <NavLink to="/">
         <img className='imgtext' src={imagetext} alt='logo' />
         </NavLink>
       <menu>
+      <li>
+          <NavLink to="/all">All Sneakers</NavLink>
+        </li>
         <li>
           <NavLink to="/contact">Contact Us</NavLink>
         </li>

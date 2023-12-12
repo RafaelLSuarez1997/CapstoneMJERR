@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { useGetItemsByBrandQuery } from "./itemSlice";
-import Navbar from "../../layout/Navbar";
 
 import "./specificItems.less";
 
@@ -16,7 +15,6 @@ const SpecificItems = () => {
 
   return (
     <div>
-    <Navbar></Navbar>
       <div className="specific-items-container">
         {items.map((item) => 
         <Link to={`/${item.id}`} key={item.id} className="item-card">

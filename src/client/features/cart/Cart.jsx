@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import './Cart.less';
 import { selectToken } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
-import Navbar from "../../layout/Navbar";
+
 
 
 function CartItem({ itemId, quantity, size, updateTotalPrice }) {
@@ -102,7 +102,6 @@ function Cart() {
   // if (authToken) {
     return (
       <div>
-        <Navbar></Navbar>
         <h1>Shopping Cart</h1>
         <ul>
           {Object.entries(cartItems).map(([itemId, { quantity, size }]) => (

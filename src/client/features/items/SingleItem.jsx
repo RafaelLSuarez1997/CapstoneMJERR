@@ -1,9 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useGetItemQuery, useGetItemsQuery } from "./itemSlice";
-import "./Singleitem.less";
+import "./Singleitem.css";
 import { ShopContext } from "../cart/ShopContext";
-import Navbar from "../../layout/Navbar";
 
 
 
@@ -18,7 +17,7 @@ export default function SingleItem() {
   useEffect(() => {
     if (!isItemLoading && !isAllItemsLoading && currentItem && allItems) {
       const filteredItems = allItems.filter(item => item.id !== currentItem.id);
-      const randomRecommendations = getRandomItems(filteredItems, 5);
+      const randomRecommendations = getRandomItems(filteredItems, 6);
       setRecommendedItems(randomRecommendations);
     }
   }, [isItemLoading, isAllItemsLoading, currentItem, allItems]);
@@ -41,7 +40,6 @@ export default function SingleItem() {
   
   return (
     <div>
-      <Navbar></Navbar>
       <div className="single-item-container">
         <img src={currentItem.imageUrl} alt={currentItem.brand} className="item-image" />
         <div className="item-details">

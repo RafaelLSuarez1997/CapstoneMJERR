@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from './ShopContext';
 import ThankYouMessage from './ThankYouMessage';
-import "./checkout.less";
+import "./checkout.css";
 
 function Checkout() {
   const { cartItems, clearCart } = useContext(ShopContext);
@@ -199,10 +199,10 @@ function Checkout() {
         <p>Total Amount: ${totalAmount.toFixed(2)}</p>
       </div>
       <div className="action-buttons">
-        <button onClick={handlePlaceOrder}>Place Order</button>
-        <Link to="/">
-          <button>Home</button>
+        <Link to="/cart">
+          <button>Back to Cart</button>
         </Link>
+        <button onClick={handlePlaceOrder}>Place Order</button>
       </div>
       {isOrderPlaced && (
         <ThankYouMessage orderId={orderId} onClose={handleClose} />

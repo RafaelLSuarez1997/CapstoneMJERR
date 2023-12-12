@@ -1,7 +1,5 @@
-// ContactUs.js
 import React, { useState } from 'react';
 import './ContactUs.less';
-import Navbar from '../../layout/Navbar';
 
 const ContactUs = () => {
   const [formData, setFormData] = useState({
@@ -45,7 +43,6 @@ const ContactUs = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
       <h2>Contact Us</h2>
       <p>Feel free to reach out to us using the form below or through other contact information.</p>
 
