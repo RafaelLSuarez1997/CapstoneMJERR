@@ -64,6 +64,7 @@ export default function SingleItem() {
           <button className="addtocartbutton" onClick={handleAddToCart}>
             Add to Cart
           </button>
+          
         </div>
       </div>
       <div className="recommended-items">
