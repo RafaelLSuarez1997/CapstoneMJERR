@@ -79,4 +79,12 @@
   .checkout-container .action-buttons button:hover {
     background-color: #b30000;
   }
+  .checkout-container .order-summary ul li {
+    line-height: 1.6; /* Adjust line height for better spacing */
+  }
+  
+  .checkout-container .order-summary ul li .shoeInfo p {
+    margin-right: 10px; /* Add space between words */
+    display: inline-block; /* Keep elements in line */
+  }
   

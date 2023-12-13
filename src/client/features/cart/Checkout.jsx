@@ -184,10 +184,10 @@ function Checkout() {
               {itemDetails[itemId] ? (
                 <div className='shoeInfo'>
                   <img className="checkoutImg" src={itemDetails[itemId].imageUrl} alt={`Product ${itemId}`} />
-                  <p>{itemDetails[itemId].brand}</p>
-                  <p>Quantity: {quantity}</p>
-                  <p>Size: {size}</p>
-                  <p>${itemDetails[itemId].price}</p>
+                  <p>{itemDetails[itemId].brand} |</p>
+                  <p>Quantity:{quantity} |</p>
+                  <p>Size:{size} |</p>
+                  <p>${itemDetails[itemId].price} |</p>
                   <br />
                 </div>
               ) : (

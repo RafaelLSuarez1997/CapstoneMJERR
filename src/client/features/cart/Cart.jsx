@@ -99,7 +99,7 @@ function Cart() {
     calculateTotalAmount();
   }, [cartItems]);
 
-  // if (authToken) {
+  if (authToken) {
     return (
       <div>
         <h1>Shopping Cart</h1>
@@ -117,9 +117,9 @@ function Cart() {
         <button onClick={() => navigate('/checkout')}>Proceed to Checkout</button>
       </div>
     );
-  // } else {
-  //   return <p>Please log in or sign up to view your cart</p>;
-  // }
+  } else {
+    return <p>Please log in or sign up to view your cart</p>;
+  }
 }
 
 export default Cart;
