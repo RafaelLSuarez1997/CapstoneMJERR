@@ -1,6 +1,6 @@
 const prisma = require('../prisma');
 const seed = async () => {
-  const item1 = await prisma.items.upsert({
+  const item1 = await prisma.items.create({
     data: {
       brand: 'Nike',
       category: 'Casual Sneakers',
@@ -10,7 +10,7 @@ const seed = async () => {
       description:'The Nike Dunk Low Photon Dust (W) is made of white leather with Photon Dust leather overlays and Swooshes. A woven Nike label on the tongue and embroidered Nike branding completes the design.'
     }
   });
-  const item2 = await prisma.items.upsert({
+  const item2 = await prisma.items.create({
     data: {
       brand: 'Adidas',
       category: 'Running Sneakers',
@@ -20,7 +20,7 @@ const seed = async () => {
       description:'The adidas Campus 00s Core Black is covered in core black and white colorways at the upper, footwear white midsole, and brown outsole. This sneaker is a product of suede, rubber, and leather materials that completes the texture. The adidas Campus 00s Core Black features the adidas logo on the tongue and the heel with campus branding at its quarter.'
     }
   });
-  const item3 = await prisma.items.upsert({
+  const item3 = await prisma.items.create({
     data: {
       brand: 'Puma',
       category: 'Running Sneakers',
@@ -30,7 +30,7 @@ const seed = async () => {
       description:'The upper of this collaborative shoe is made from synthetic materials featuring a 3D printed design throughout. The laces are made of green cotton with an underlying tongue made of mesh. This upper displays a circular leaves motif, near the collar, forming a crown and the rubber outsole has a thin linear pattern for traction.'
     },
   });
-  const item4 = await prisma.items.upsert({
+  const item4 = await prisma.items.create({
     data: {
         brand: 'Converse',
         category: 'Casual Sneakers',
@@ -40,7 +40,7 @@ const seed = async () => {
         description:'The Converse Chuck Taylor All Star Hi Platform Black White W is a classic sneaker with a modern twist. The platform sole adds height and a trendy touch to the iconic Chuck Taylor silhouette. The upper is made of durable canvas material in a sleek black and white colorway, making it versatile and easy to style with any outfit.'
     },
   });
-  const item5 = await prisma.items.upsert({
+  const item5 = await prisma.items.create({
       data: {
         brand: 'New Balance',
         category: 'Running Sneakers',
@@ -50,7 +50,7 @@ const seed = async () => {
         description:'Designed by a team led by Yue Wu, this shoe features an upper with a breathable mesh base, light arctic gray and purple suede overlays, and purple New Balance branding. This upper rests on a slightly yellow midsole with NERGY cushioning for improved comfort. Underfoot, it features traction patterns that enhance its grip.'
     },
   });
-  const item6 = await prisma.items.upsert({
+  const item6 = await prisma.items.create({
     data: {
       brand: 'Reebok',
       category: 'Fitness shoes',
@@ -61,7 +61,7 @@ const seed = async () => {
     }
   });
   
-  const item7 = await prisma.items.upsert({
+  const item7 = await prisma.items.create({
     data: {
       brand: 'Nike',
       category: 'Casual Sneakers',
@@ -72,7 +72,7 @@ const seed = async () => {
     }
   });
   
-  const item8 = await prisma.items.upsert({
+  const item8 = await prisma.items.create({
     data: {
       brand: 'Adidas',
       category: 'Fitness Sneakers',
@@ -83,7 +83,7 @@ const seed = async () => {
     }
   });
   
-  const item9 = await prisma.items.upsert({
+  const item9 = await prisma.items.create({
     data: {
       brand: 'Converse',
       category: 'Casual Sneakers',
@@ -94,7 +94,7 @@ const seed = async () => {
     }
   });
   
-  const item10 = await prisma.items.upsert({
+  const item10 = await prisma.items.create({
     data: {
       brand: 'Nike',
       category: 'Running Sneakers',
@@ -105,7 +105,7 @@ const seed = async () => {
     }
   });
   
-  const item11 = await prisma.items.upsert({
+  const item11 = await prisma.items.create({
     data: {
       brand: 'Adidas',
       category: 'Casual Sneakers',
@@ -116,7 +116,7 @@ const seed = async () => {
     }
   });
   
-  const item12 = await prisma.items.upsert({
+  const item12 = await prisma.items.create({
     data: {
       brand: 'Jordan',
       category: 'Casual Sneakers',
@@ -127,7 +127,7 @@ const seed = async () => {
     }
   });
   
-  const item13 = await prisma.items.upsert({
+  const item13 = await prisma.items.create({
     data: {
       brand: 'Nike',
       category: 'Running Sneakers',
@@ -138,7 +138,7 @@ const seed = async () => {
     }
   });
   
-  const item14 = await prisma.items.upsert({
+  const item14 = await prisma.items.create({
     data: {
       brand: 'Converse',
       category: 'Fitness Sneakers',
@@ -149,7 +149,7 @@ const seed = async () => {
     }
   });
   
-  const item15 = await prisma.items.upsert({
+  const item15 = await prisma.items.create({
     data: {
       brand: 'Adidas',
       category: 'Fitness Sneakers',
@@ -159,7 +159,7 @@ const seed = async () => {
       description:'Adidas NMD R1: The Adidas NMD R1 blends urban style with advanced cushioning technology, featuring a sock-like Primeknit upper and distinctive midsole plugs for a modern and functional look.'
     }
   });
-  const item16 = await prisma.items.upsert({
+  const item16 = await prisma.items.create({
     data: {
       brand: 'Sketchers',
       category: 'Casual Sneakers',
@@ -170,7 +170,7 @@ const seed = async () => {
     }
   });
   
-  const item17 = await prisma.items.upsert({
+  const item17 = await prisma.items.create({
     data: {
       brand: 'Nike',
       category: 'Running Sneakers',
@@ -181,7 +181,7 @@ const seed = async () => {
     }
   });
   
-  const item18 = await prisma.items.upsert({
+  const item18 = await prisma.items.create({
     data: {
       brand: 'Converse',
       category: 'Walking Sneakers',
@@ -192,7 +192,7 @@ const seed = async () => {
     }
   });
   
-  const item19 = await prisma.items.upsert({
+  const item19 = await prisma.items.create({
     data: {
       brand: 'New Balance',
       category: 'Casual Sneakers',
@@ -203,7 +203,7 @@ const seed = async () => {
     }
   });
   
-  const item20 = await prisma.items.upsert({
+  const item20 = await prisma.items.create({
     data: {
       brand: 'Puma',
       category: 'Running Sneakers',
@@ -214,7 +214,7 @@ const seed = async () => {
     }
   });
   
-  const item21 = await prisma.items.upsert({
+  const item21 = await prisma.items.create({
     data: {
       brand: 'Puma',
       category: 'Casual Sneakers',
@@ -225,7 +225,7 @@ const seed = async () => {
     }
   });
   
-  const item23 = await prisma.items.upsert({
+  const item23 = await prisma.items.create({
     data: {
       brand: 'Adidas',
       category: 'Astro',
@@ -238,14 +238,14 @@ const seed = async () => {
   
 
 
-  const user1 = await prisma.user.upsert({
+  const user1 = await prisma.user.create({
     data: {
       username: 'jose',
       password: 'password1',
       cart: {
-        upsert: {
+        create: {
           items: {
-            upsert: [
+            create: [
               { productId: item1.id, quantity: 1, size: item1.size },
               { productId: item2.id, quantity: 1, size: item2.size }
             ]
@@ -261,14 +261,14 @@ const seed = async () => {
       }
     }
   });
-  const user2 = await prisma.user.upsert({
+  const user2 = await prisma.user.create({
     data: {
       username: 'adam',
       password: 'password2',
       cart: {
-        upsert: {
+        create: {
           items: {
-            upsert: [{ productId: item1.id, quantity: 1, size: item1.size }]
+            create: [{ productId: item1.id, quantity: 1, size: item1.size }]
           }
         }
       }
