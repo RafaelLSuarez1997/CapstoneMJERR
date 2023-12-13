@@ -32,19 +32,23 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
   };
 
   const increaseQuantity = () => {
+    console.log('Increasing quantity...');
     if (currentQuantity < 10) {
       setCurrentQuantity(currentQuantity + 1);
       setTotalItemQuantity(totalItemQuantity + 1);
       updateTotalPrice(item.price, 1);
     }
+    console.log('Quantity increased.');
   };
-
+  
   const decreaseQuantity = () => {
+    console.log('Decreasing quantity...');
     if (currentQuantity > 1) {
       setCurrentQuantity(currentQuantity - 1);
       setTotalItemQuantity(totalItemQuantity - 1);
       updateTotalPrice(item.price, -1);
     }
+    console.log('Quantity decreased.');
   };
 
   return (
