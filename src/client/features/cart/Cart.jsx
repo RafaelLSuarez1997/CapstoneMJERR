@@ -34,7 +34,6 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
   const increaseQuantity = () => {
     if (currentQuantity < 10) {
       setCurrentQuantity(currentQuantity + 1);
-      setTotalItemQuantity(totalItemQuantity + 1);
       updateTotalPrice(item.price, 1);
     }
   };
@@ -42,7 +41,6 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
   const decreaseQuantity = () => {
     if (currentQuantity > 1) {
       setCurrentQuantity(currentQuantity - 1);
-      setTotalItemQuantity(totalItemQuantity - 1);
       updateTotalPrice(item.price, -1)
     }
   };
@@ -57,9 +55,9 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
         <p>Brand: {item.brand}</p>
         <p>Size: {size}</p>
         <div>
-          <button onClick={() => handleQuantityChange(-1)}>-</button>
+          <button onClick={decreaseQuantity}>-</button>
           <span style={{ margin: '0 10px' }}>{currentQuantity}</span>
-          <button onClick={() => handleQuantityChange(1)}>+</button>
+          <button onClick={increaseQuantity}>+</button>
         </div>
         <br />
         <button onClick={onDelete}>Remove from Cart</button>
