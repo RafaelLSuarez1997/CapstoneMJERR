@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import { useGetItemsByBrandQuery } from "./itemSlice";
 
-import "./specificItems.less";
+import "./SpecificItems.less";
 
 const SpecificItems = () => {
   const { brand } = useParams();
