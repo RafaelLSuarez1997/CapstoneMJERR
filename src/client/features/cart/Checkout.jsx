@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { ShopContext } from './ShopContext';
 import ThankYouMessage from './ThankYouMessage';
-import "./checkout.css";
+import "./Checkout.css";
 
 function Checkout() {
   const { cartItems, clearCart } = useContext(ShopContext);
