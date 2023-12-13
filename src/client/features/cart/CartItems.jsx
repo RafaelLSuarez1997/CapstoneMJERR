@@ -10,13 +10,13 @@ const ShopCartItems = () => {
     useEffect(() => {
         const fetchCartItems = async () => {
             try {
-                const response = await fetch(`/products/${id}`, {
+                const response = await fetch(`/api/items`, {
                     method: "GET",
                     headers: {
                         Accept: "application/json",
                         "Content-Type": "application/json",
                     },
-                    credentials: "include",
+                    
                 });
 
                 if (response.ok) {
@@ -58,7 +58,7 @@ const ShopCartItems = () => {
 
     const deleteCartItem = async (itemId) => {
         try {
-            const response = await fetch(`/api/auth/users/${userId}/cart/items/${itemId}`, {
+            const response = await fetch(`/api/items/id/${item.id}`, {
                 method: "DELETE",
                 headers: {
                     Accept: "application/json",
@@ -87,15 +87,11 @@ const ShopCartItems = () => {
                         <img src={item.imageUrl} alt={item.brand} />
                         <div>
                             <h3>{item.brand}</h3>
-                            <p>{item.description}</p>
+                            <p>Size: {item.size}</p>
                             <p>Price: ${item.price}</p>
-                            {/* Add more details as needed */}
-                            <button onClick={() => updateCartItem(item.id, { /* updatedData */ })}>
-                                Update
-                            </button>
-                            <button onClick={() => deleteCartItem(item.id)}>
-                                Delete
-                            </button>
+                           
+                                
+                            
                         </div>
                     </li>
                 ))}
