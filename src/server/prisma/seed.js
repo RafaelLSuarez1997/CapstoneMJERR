@@ -1,6 +1,6 @@
 const prisma = require('../prisma');
 
-const products = async () => {
+const Item = async () => {
   try {
     const product1 = await prisma.product.create({
       data: {
@@ -16,7 +16,7 @@ const products = async () => {
 
     const product2 = await prisma.product.create({
       data: {
-        id: 2,
+        id: "2",
         brand: 'Adidas',
         category: 'Running Sneakers',
         imageUrl: 'https://images.stockx.com/360/adidas-Campus-00s-Core-Black/Images/adidas-Campus-00s-Core-Black/Lv2/img01.jpg?fm=webp&auto=compress&w=576&dpr=2&updated_at=1681284184&h=384&q=60',
@@ -26,14 +26,26 @@ const products = async () => {
       },
     });
 
-    return [product1, product2];
+    const product3 = await prisma.items.create({
+    data: {
+      id:"3",
+      brand: 'Puma',
+      category: 'Running Sneakers',
+      imageUrl:'https://images.stockx.com/360/Puma-LaMelo-Ball-MB01-Lo-Green-Gecko/Images/Puma-LaMelo-Ball-MB01-Lo-Green-Gecko/Lv2/img01.jpg?fm=webp&auto=compress&w=576&dpr=2&updated_at=1665386437&h=384&q=60',
+      size: 0.0,
+      price: 79.99,
+      description:'The upper of this collaborative shoe is made from synthetic materials featuring a 3D printed design throughout. The laces are made of green cotton with an underlying tongue made of mesh. This upper displays a circular leaves motif, near the collar, forming a crown and the rubber outsole has a thin linear pattern for traction.'
+    },
+  });
+
+    return [product1, product2, product3];
   } catch (error) {
     console.error('Error creating products:', error);
     throw error;
   }
 };
 
-module.exports = products;
+module.exports = Item;
 
   // const item3 = await prisma.items.create({
   //   data: {
