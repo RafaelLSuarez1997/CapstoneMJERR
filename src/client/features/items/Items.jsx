@@ -10,7 +10,7 @@ import jordanImg from '../../assets/Jordan.png';
 import pumaImg from '../../assets/Puma.png';
 import reebokImg from '../../assets/Reebok.png';
 import skechersImg from '../../assets/Skechers.png';
-import newBalanceImg from '../../assets/Newbalance.png';
+import newBalanceImg from '../../assets/newbalance.png';
 
 
 
