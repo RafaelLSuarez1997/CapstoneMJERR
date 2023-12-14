@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ShopContext } from './ShopContext';
 import { useGetItemQuery } from '../items/itemSlice';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import './cart.less';
+import './cart.css';
 import { selectToken } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
 

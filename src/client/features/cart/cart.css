@@ -1,0 +1,85 @@
+
+.cartContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  flex-wrap: wrap; /* Allows items to wrap in smaller screens */
+}
+
+.cartImg {
+  max-width: 100px;
+  max-height: 100px;
+  margin-right: 20px;
+  border-radius: 4px;
+}
+
+.cartData {
+  flex-grow: 1;
+  min-width: 150px; /* Ensures data section doesn't get too squeezed */
+}
+
+.cartData h3,
+.cartData p {
+  margin: 5px 0;
+}
+
+.quantityControl {
+  display: flex;
+  align-items: center;
+}
+
+.quantityControl button {
+  background-color: #ddd;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  margin: 0 5px;
+}
+
+.quantityControl span {
+  min-width: 30px;
+  text-align: center;
+}
+
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.totalAmount {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.linkButton {
+  text-decoration: none;
+  color: white;
+}
+

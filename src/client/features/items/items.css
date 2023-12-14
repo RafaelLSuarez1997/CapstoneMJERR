@@ -10,10 +10,13 @@ a:hover {
 }
 
 .imgFullLogo {
-  max-width: 500px;
-  margin-right: 200px;
+  max-width: 550px; 
+  max-height: auto; 
+  margin-left: 70px; 
+  margin-right: 100px;
   padding-left: 20px;
 }
+
 
 .random-shoe-link {
   text-decoration: none;

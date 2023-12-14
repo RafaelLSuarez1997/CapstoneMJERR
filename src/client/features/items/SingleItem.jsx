@@ -5,7 +5,6 @@ import "./Singleitem.css";
 import { ShopContext } from "../cart/ShopContext";
 
 
-
 export default function SingleItem() {
   const { id } = useParams();
   const { data: currentItem, isLoading: isItemLoading } = useGetItemQuery(id);
@@ -13,11 +12,11 @@ export default function SingleItem() {
   const [selectedSize, setSelectedSize] = useState(0);
   const { addToCart } = useContext(ShopContext);
   const [recommendedItems, setRecommendedItems] = useState([]);
-
+  const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
   useEffect(() => {
     if (!isItemLoading && !isAllItemsLoading && currentItem && allItems) {
       const filteredItems = allItems.filter(item => item.id !== currentItem.id);
-      const randomRecommendations = getRandomItems(filteredItems, 6);
+      const randomRecommendations = getRandomItems(filteredItems, 5);
       setRecommendedItems(randomRecommendations);
     }
   }, [isItemLoading, isAllItemsLoading, currentItem, allItems]);
@@ -30,6 +29,10 @@ export default function SingleItem() {
   };
   const handleAddToCart = () => {
     addToCart(currentItem.id, selectedSize);
+    setShowAddToCartMessage(true);
+    setTimeout(() => {
+      setShowAddToCartMessage(false);
+    }, 3000);
   };
   if (isItemLoading || isAllItemsLoading) {
     return <p>Loading...</p>;
@@ -37,7 +40,6 @@ export default function SingleItem() {
   if (!currentItem) {
     return <p>Item not found</p>;
   }
-  
   return (
     <div>
       <div className="single-item-container">
@@ -51,7 +53,7 @@ export default function SingleItem() {
             type="range"
             id="size"
             name="size"
-            min="0"
+            min="1"
             max="20"
             step="0.5"
             value={selectedSize}
@@ -63,6 +65,12 @@ export default function SingleItem() {
             Add to Cart
           </button>
         </div>
+         {/* Pop-up message */}
+      {showAddToCartMessage && (
+        <div className="popup">
+          Item added to cart!
+        </div>
+      )}
       </div>
       <div className="recommended-items">
         <h3>Recommended Items:</h3>
