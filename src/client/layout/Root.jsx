@@ -60,10 +60,10 @@ export default function Root() {
           <section className="footer">
             <div className="footer__container">
               <div className="icons">
-                <a href="#"><i className="fab fa-facebook"></i></a>
-                <a href="#"><i className="fab fa-twitter"></i></a>
-                <a href="#"><i className="fab fa-instagram"></i></a>
-                <a href="#"><i className="fab fa-linkedin"></i></a>
+                <a href="https://www.facebook.com/stockxdotcom/"><i className="fab fa-facebook"></i></a>
+                <a href="https://twitter.com/stockx"><i className="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com/stockx/"><i className="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/company/stockx/"><i className="fab fa-linkedin"></i></a>
               </div>
             </div>
             <div className="footer__content">

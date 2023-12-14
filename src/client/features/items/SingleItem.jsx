@@ -9,7 +9,7 @@ export default function SingleItem() {
   const { id } = useParams();
   const { data: currentItem, isLoading: isItemLoading } = useGetItemQuery(id);
   const { data: allItems, isLoading: isAllItemsLoading } = useGetItemsQuery();
-  const [selectedSize, setSelectedSize] = useState(0);
+  const [selectedSize, setSelectedSize] = useState(4);
   const { addToCart } = useContext(ShopContext);
   const [recommendedItems, setRecommendedItems] = useState([]);
   const [showAddToCartMessage, setShowAddToCartMessage] = useState(false);
@@ -53,7 +53,7 @@ export default function SingleItem() {
             type="range"
             id="size"
             name="size"
-            min="1"
+            min="4"
             max="20"
             step="0.5"
             value={selectedSize}
@@ -65,7 +65,6 @@ export default function SingleItem() {
             Add to Cart
           </button>
         </div>
-         {/* Pop-up message */}
       {showAddToCartMessage && (
         <div className="popup">
           Item added to cart!
