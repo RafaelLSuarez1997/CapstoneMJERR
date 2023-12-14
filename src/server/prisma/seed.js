@@ -235,6 +235,66 @@ const seed = async () => {
       description:'CLEUS Astro Boy Big Red Boots'
     }
   });
+  const item24 = await prisma.items.create({
+    data: {
+      brand: 'Puma',
+      category: 'Walking Sneakers',
+      imageUrl:'https://images.stockx.com/360/Puma-Suede-Rhuigi-Villasenor/Images/Puma-Suede-Rhuigi-Villasenor/Lv2/img01.jpg?fm=webp&auto=compress&w=480&dpr=2&updated_at=1682522699&h=320&q=60',
+      size: 0.0,
+      price: 200.00,
+      description:'The Puma Suede Rhuigi Villasenor is a collaboration between Puma and LA-based designer Rhuigi Villasenor. This sneaker features a premium suede upper in a bold red colorway with contrasting white accents on the Puma Formstrip and midsole. The shoe also includes a gold Puma logo on the heel and Rhuigi Villasenor branding on the tongue and insole.'
+    }
+  });
+  const item25 = await prisma.items.create({
+    data: {
+      brand: 'Puma',
+      category: 'Running shoes',
+      imageUrl:'https://images.stockx.com/360/Puma-LaMelo-Ball-MB03-Toxic/Images/Puma-LaMelo-Ball-MB03-Toxic/Lv2/img01.jpg?fm=webp&auto=compress&w=480&dpr=2&updated_at=1699460747&h=320&q=60',
+      size: 0.0,
+      price: 200.00,
+      description:'LaMelo Ball’s third signature shoe MB.03 takes a trip to the never before seen alternative universe that is the Melo world. Highlighted by slime inspired rubber wrap-ups and an engineered knit upper with scratch cutouts, the MB.03 is truly Not From Here.'
+    }
+  });
+  const item26 = await prisma.items.create({
+    data: {
+      brand: 'Converse',
+      category: 'Walking Shoes',
+      imageUrl:'https://images.stockx.com/360/Converse-Run-Star-Motion-Black-White-Gum/Images/Converse-Run-Star-Motion-Black-White-Gum/Lv2/img01.jpg?fm=webp&auto=compress&w=480&dpr=2&updated_at=1635274730&h=320&q=60',
+      size: 0.0,
+      price: 95.00,
+      description:'This high-top sneaker features a black canvas upper with a reinforced toe cap. Other upper details include the circle All-Star logo patch on the medial ankle, a CX foam insole, White stitching, branded tongue, a heel pull tab, silver metallic eyelets, and white Laces. The highlight of this sneaker is a chunky and wavy sole unit made up of a lightweight Phylon midsole dressed in white and lugged outsole with gum on the forefoot and black rubber at the heel.'
+    }
+  });
+  // const item = await prisma.items.create({
+  //   data: {
+  //     brand: '',
+  //     category: '',
+  //     imageUrl:'',
+  //     size: 0.0,
+  //     price: 200.00,
+  //     description:''
+  //   }
+  // });
+  // const item = await prisma.items.create({
+  //   data: {
+  //     brand: '',
+  //     category: '',
+  //     imageUrl:'',
+  //     size: 0.0,
+  //     price: 200.00,
+  //     description:''
+  //   }
+  // });
+  // const item = await prisma.items.create({
+  //   data: {
+  //     brand: '',
+  //     category: '',
+  //     imageUrl:'',
+  //     size: 0.0,
+  //     price: 200.00,
+  //     description:''
+  //   }
+  // });
   
 
 

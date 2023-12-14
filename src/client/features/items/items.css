@@ -1,12 +1,15 @@
+
 a:hover {
   text-decoration: none; /* Removes underline on hover */
   text-decoration-color: black;
 }
 .header-container {
   display: flex;
+  justify-content: center; /* Center items horizontally */
   align-items: center;
+  width: 100%; /* Take full width of the parent container */
   margin-bottom: 20px;
-  margin-top: 80px;
+  margin-top: 80px
 }
 
 .imgFullLogo {
@@ -29,30 +32,34 @@ a:hover {
 }
 
 .random-shoe-container {
+  
   background-color: #ffffff;
-  width: 700px; /* Set your desired width */
-  height: 400px;
+  width: 800px; 
+  height: 500px;
   display: flex;
   align-items: center;
-  border: 1px solid #ccc; /* Border around each brand */
+  border: 1px solid #ccc; 
   border-radius: 8px; /* Add some border-radius for rounded corners */
   box-shadow: 6px 6px 5px  rgba(250, 0, 0, 0.2); /* Example of a shadow */
+
 }
 .random-shoe-text {
-  font-size: 30px;
   margin-left: 20px; /* Space between image and text */
   text-align: center;
+  width: 350px; /* Adjusted width */
 }
 
 .random-shoe-text .brand, .random-shoe-text .price {
   height: auto;
-  width: 400px;
-  font-size: 50px;
+  width: 100%; /* Make text take full width of its container */
+  font-size: 40px;
+  word-wrap: break-word; /* Ensures text breaks to prevent overflow */
 }
 
 .random-shoe-image {
  height: auto;
  width: 300px;
+ margin-left: 50px;
 }
 
 .random-shoe-details {
@@ -82,11 +89,18 @@ a:hover {
 
 .brand-container {
   border: 1px solid #ddd; /* Border around all brands */
-  padding: 16px; /* Add padding for spacing */
   background-color: #f8f8f8; /* Add a light background color */
 }
 
 .brand-links {
+  width: 100%;
+  display: flex;
+  flex-direction: row; /* Align items in a row */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent wrapping of items */
+  width: 100%;
+  border: 3px solid #7e7e7e; /* Border around each brand */
+  border-radius: 8px; /* Add some border-radius for rounded corners */
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling if needed */
 }
@@ -97,13 +111,13 @@ a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 20px;
+  margin: 0 auto;
+  margin-left: 15px;
   margin-bottom: 20px; /* Spacing between each brand */
   padding: 10px; /* Padding for each brand box */
   box-shadow: 6px 6px 5px rgba(250, 0, 0, 0.2); /* Example of a shadow */
   border-radius: 10px; /* Rounded corners */
   background-color: #fff; /* Background color for each brand box */
-  transition: transform 0.2s ease-in-out;
 }
 
 
@@ -119,6 +133,16 @@ a:hover {
 }
 
 h2 {
-  font-size: 24px;
-  margin-bottom: 16px;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 30px;
+}
+.items-container {
+  max-width: 125ch;
+  margin: 0 auto;
+  padding: 0.5rem;
 }

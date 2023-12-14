@@ -3,6 +3,15 @@ import { Link } from 'react-router-dom';
 import './items.css';
 import { useState, useEffect } from 'react';
 import imageFullLogo from '../../assets/logoimage.png';
+import nikeImg from '../../assets/nike.png'
+import adidasImg from '../../assets/adidas.png';
+import converseImg from '../../assets/converse.png';
+import jordanImg from '../../assets/jordan.png';
+import pumaImg from '../../assets/puma.png';
+import reebokImg from '../../assets/reebok.png';
+import skechersImg from '../../assets/skechers.png';
+import newBalanceImg from '../../assets/newbalance.png';
+
 
 
 export default function Items() {
@@ -56,9 +65,19 @@ export default function Items() {
   }
 
   const uniqueBrands = [...new Set(items.map(item => item.brand))];
+  const brandImages = {
+    nike: nikeImg,
+    adidas: adidasImg,
+    converse: converseImg,
+    jordan: jordanImg,
+    puma: pumaImg,
+    reebok: reebokImg,
+    skechers: skechersImg,
+    newbalance: newBalanceImg 
+  };
 
   return (
-    <div>
+    <div className="items-container">
       <div className="header-container">
         <img className='imgFullLogo' src={imageFullLogo} alt='logo' />
 
@@ -86,13 +105,16 @@ export default function Items() {
           </>
         )}
       </div>
-        <h2>Our Brands</h2>
+      <h2>Our Brands</h2>
       <div className="brand-links">
         {uniqueBrands.map(brand => (
-        <Link key={brand} to={`/brand/${brand}`} className="brand-link">
-          <img src={items.find(item => item.brand === brand)?.imageUrl || 'default-image-url'} alt={brand} />
-          <span>{brand}</span>
-        </Link>
+          <Link key={brand} to={`/brand/${brand}`} className="brand-link">
+            <img 
+              src={brandImages[brand.toLowerCase()]}
+              alt={brand} 
+              onError={(e) => { e.target.onerror = null; e.target.src = 'path-to-default-image'; }}
+            />
+          </Link>
         ))}
       </div>
     </div>
