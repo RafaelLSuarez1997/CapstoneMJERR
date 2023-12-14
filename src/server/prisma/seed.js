@@ -42,7 +42,7 @@ const seed = async () => {
   });
   const item5 = await prisma.items.create({
       data: {
-        brand: 'New Balance',
+        brand: 'NewBalance',
         category: 'Running Sneakers',
         imageUrl:'https://images.stockx.com/360/New-Balance-2002R-Protection-Pack-Light-Arctic-Grey-Purple/Images/New-Balance-2002R-Protection-Pack-Light-Arctic-Grey-Purple/Lv2/img01.jpg?fm=webp&auto=compress&w=576&dpr=2&updated_at=1660749592&h=384&q=60',
         size: 0.0,
@@ -161,7 +161,7 @@ const seed = async () => {
   });
   const item16 = await prisma.items.create({
     data: {
-      brand: 'Sketchers',
+      brand: 'Skechers',
       category: 'Casual Sneakers',
       imageUrl:'https://images.stockx.com/360/Doja-Cat-Skechers-Dlites-White/Images/Doja-Cat-Skechers-Dlites-White/Lv2/img01.jpg?fm=webp&auto=compress&w=576&dpr=2&updated_at=1695050584&h=384&q=60',
       size: 0.0,
@@ -194,7 +194,7 @@ const seed = async () => {
   
   const item19 = await prisma.items.create({
     data: {
-      brand: 'New Balance',
+      brand: 'NewBalance',
       category: 'Casual Sneakers',
       imageUrl:'https://images.stockx.com/360/New-Balance-550-White-Green/Images/New-Balance-550-White-Green/Lv2/img01.jpg?fm=webp&auto=compress&w=576&dpr=2&updated_at=1635799416&h=384&q=60',
       size: 0.0,
