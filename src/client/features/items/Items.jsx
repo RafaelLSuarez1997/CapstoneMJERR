@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import './items.css';
 import { useState, useEffect } from 'react';
 import imageFullLogo from '../../assets/logoimage.png';
-import nikeImg from '../../assets/nike.png'
-import adidasImg from '../../assets/adidas.png';
-import converseImg from '../../assets/converse.png';
-import jordanImg from '../../assets/jordan.png';
-import pumaImg from '../../assets/puma.png';
-import reebokImg from '../../assets/reebok.png';
-import skechersImg from '../../assets/skechers.png';
-import newBalanceImg from '../../assets/newbalance.png';
+import nikeImg from '../../assets/Nike.png'
+import adidasImg from '../../assets/Adidas.png';
+import converseImg from '../../assets/Converse.png';
+import jordanImg from '../../assets/Jordan.png';
+import pumaImg from '../../assets/Puma.png';
+import reebokImg from '../../assets/Reebok.png';
+import skechersImg from '../../assets/Skechers.png';
+import newBalanceImg from '../../assets/Newbalance.png';
 
 
 
