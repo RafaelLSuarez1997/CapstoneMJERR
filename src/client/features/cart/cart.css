@@ -1,84 +1,85 @@
-
-.cartContainer {
-  max-width: 1200px;
+/* Styles for the overall cart container */
+.cart-container {
+  max-width: 800px;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Arial', sans-serif;
 }
 
-h1 {
+/* Header styling */
+.cart-header {
   text-align: center;
-  color: #333;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
-.cartItem {
+/* Styling for the list of items */
+.cart-item-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* Styling for each cart item - ensuring they are in a row */
+.cart-item {
   display: flex;
-  align-items: center;
-  background: #f9f9f9;
+  align-items: center; /* Aligns items vertically in the center */
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
   margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 8px;
-  flex-wrap: wrap; /* Allows items to wrap in smaller screens */
 }
 
+/* Image styling */
 .cartImg {
-  max-width: 100px;
-  max-height: 100px;
+  width: 100px; /* Adjust as needed */
+  height: auto;
   margin-right: 20px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
-.cartData {
+/* Styling for the data section of each item */
+.cart-item-data {
   flex-grow: 1;
-  min-width: 150px; /* Ensures data section doesn't get too squeezed */
+  display: flex;
+  flex-direction: column; /* Aligns item data vertically */
 }
 
-.cartData h3,
-.cartData p {
+/* Item title */
+.cart-item h3 {
+  margin: 0;
+  color: #333;
+}
+
+/* Item details */
+.cart-item p {
   margin: 5px 0;
+  color: #555;
 }
 
-.quantityControl {
+/* Quantity control styling */
+.quantity-control {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
 
-.quantityControl button {
-  background-color: #ddd;
-  border: none;
+.quantity-control button {
   padding: 5px 10px;
-  cursor: pointer;
   margin: 0 5px;
 }
 
-.quantityControl span {
-  min-width: 30px;
-  text-align: center;
-}
-
-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-.totalAmount {
-  text-align: right;
-  font-size: 18px;
+/* Total amount styling */
+.total-amount {
   font-weight: bold;
+  text-align: center;
   margin-top: 20px;
 }
 
-.linkButton {
-  text-decoration: none;
-  color: white;
+/* Footer section styling */
+.cart-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.cart-footer button {
+  padding: 10px 15px;
+  margin: 0 10px;
 }

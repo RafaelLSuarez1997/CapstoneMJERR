@@ -1,65 +1,53 @@
-/* AboutUs.css */
-
 .aboutus-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 50px 15px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.content-wrapper {
+  display: flex;
+  align-items: flex-start; 
+  position: relative; 
 }
 
 .aboutus-header {
-  margin-bottom: 30px;
+  max-width: 50%; 
+  font-size: 25px;
+  line-height: 2.2em;
+  position: relative; 
+  background-color: white;
+  z-index: 1; 
+  
 }
 
-.aboutus-header h1 {
-  font-size: 2.5em;
-  color: #333;
-  margin-bottom: 15px;
+.aboutus-header::after {
+  content: '';
+  position: absolute;
+  right: -50%; 
+  top: 0;
+  bottom: 0;
+  width: 50%; 
+  background-color: white;
+  z-index: 0; 
 }
 
-.aboutus-header p {
-  font-size: 1.2em;
-  color: #666;
-  line-height: 1.6;
-}
-.aboutus-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between; /* Changed */
-  gap: 20px;
+.aboutus-image {
+  margin-top: 120px;
+  width: 90%; 
+  position: relative; 
+  z-index: 2; 
 }
 
-.aboutus-text, .aboutus-person {
-  width: 50%;
-}
-
-.aboutus-person {
-  width: 50%;
-}
-
-.aboutus-person img {
-  max-width: 100%;
+.aboutus-image img {
+  width: 100%;
   height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
 }
-
-.aboutus-person p {
-  font-size: 1em;
-  color: #666;
-  line-height: 1.6;
-  margin-top: 15px;
+.aboutmetext {
+  text-align: center;
+  padding-left: 20px; /* Adjusted to a reasonable value */
+  padding-right: 20px;
+  margin: 0 auto; /* Center the text block if needed */
+  max-width: 80%; /* Optional: Restrict the maximum width of the text block */
 }
-
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .aboutus-content {
-    flex-direction: column;
-  }
-
-  .aboutus-person {
-    width: 100%;
-  }
-}
-
-

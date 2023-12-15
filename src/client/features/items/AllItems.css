@@ -1,43 +1,48 @@
 .items-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    padding: 10px;
-  }
-  
-  .item-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    margin: 10px;
-    padding: 10px;
-    width: 200px;
-    border: 1px solid #ccc; /* Border around each brand */
-    border-radius: 8px; /* Add some border-radius for rounded corners */
-    box-shadow: 6px 6px 5px  rgba(250, 0, 0, 0.2); /* Example of a shadow */
-    text-decoration: none;
-    color: inherit;
-  }
-  
-  
-  .item-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc; /* Border around each brand */
-  }
-  
-  .item-details {
-    text-align: center;
-  }
-  
-  .item-brand {
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  .item-category,
-  .item-size {
-    color: #555;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 10px;
+}
+
+.item-card {
+  border: 1px solid #4d4d4d;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 10px;
+  width: 200px;
+  box-shadow: 6px 6px 5px rgba(250, 0, 0, 0.2);
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align the content */
+}
+
+.item-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.item-details {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.item-brand, .item-category, .item-size {
+  width: 100%; /* Full width */
+  margin: 2px 0; /* Adjusted spacing */
+}
+
+.item-brand {
+  font-weight: bold;
+}
+
+.item-category, .item-size {
+  color: #181818;
+}

@@ -51,7 +51,6 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
       <div>
         <div className='cartData'></div>
         <h3>{item.name}</h3>
-        <p>Item ID: {itemId}</p>
         <p>Brand: {item.brand}</p>
         <p>Size: {size}</p>
         <div>
