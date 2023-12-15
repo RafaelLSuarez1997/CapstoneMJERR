@@ -32,10 +32,10 @@ a:hover {
 }
 
 .random-shoe-container {
-  
+  overflow: hidden;
   background-color: #ffffff;
-  width: 800px; 
-  height: 500px;
+  width: auto; 
+  height: 200px;
   display: flex;
   align-items: center;
   border: 1px solid #ccc; 

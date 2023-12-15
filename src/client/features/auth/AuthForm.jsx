@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLoginMutation, useRegisterMutation } from "./authSlice";
+import './AuthForm.css';
+
 
 /** This form allows users to register or log in. */
 export default function AuthForm() {
@@ -42,9 +44,9 @@ export default function AuthForm() {
   };
 
   return (
-    <>
+    <div className="auth-form-container">
       <h1>{authAction}</h1>
-      <form onSubmit={attemptAuth}>
+      <form onSubmit={attemptAuth} className="auth-form">
         <label>
           Username
           <input
@@ -70,6 +72,6 @@ export default function AuthForm() {
       {(loginLoading || registerLoading) && <p>Please wait...</p>}
       {loginError && <p role="alert">{loginError}</p>}
       {registerError && <p role="alert">{registerError}</p>}
-    </>
+    </div>
   );
 }
