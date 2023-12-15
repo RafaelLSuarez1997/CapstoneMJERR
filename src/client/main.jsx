@@ -14,6 +14,7 @@ import ContactUs from './features/items/ContactUs';
 import Cart from './features/cart/Cart.jsx';
 import SpecificItems from './features/items/SpecificItems.jsx';
 import AllItems from './features/items/AllItems.jsx';
+import AboutUs from './features/items/Aboutus.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ShopContextProvider } from './features/cart/ShopContext.jsx';
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
       { path: '/login', element: <AuthForm /> },
       { path: '/cart', element: <Cart /> },
       { path: '/checkout', element: <Checkout /> },
-      { path: '/checkout-message/:orderId', element: <ThankYouMessage /> }
+      { path: '/checkout-message/:orderId', element: <ThankYouMessage /> },
+      { path: '/about', element: <AboutUs /> },
     ]
   }
 ]);

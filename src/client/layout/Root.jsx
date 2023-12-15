@@ -69,7 +69,7 @@ export default function Root() {
             </div>
             <div className="footer__content">
               <h3>©2023 ShoeX. All Rights Reserved.</h3>
-              <a href="#">About us</a>
+              <a href="/about">About us</a>
               <a href="#">News</a>
               <a href="#">Careers</a>
               <a href="/contact">Contact Us</a>

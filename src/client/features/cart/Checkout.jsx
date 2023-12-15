@@ -227,8 +227,8 @@ function Checkout() {
         </li>
       ))}
     </ul>
-    <p>Total Amount: ${(totalAmount - discountAmount).toFixed(2)}</p>
     {discountAmount > 0 && <p>Discount: ${discountAmount.toFixed(2)}</p>}
+    <p>Total Amount: ${(totalAmount - discountAmount).toFixed(2)}</p>
   </div>
       <div className="action-buttons">
         <Link to="/cart">
