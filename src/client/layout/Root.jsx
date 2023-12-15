@@ -38,6 +38,7 @@ export default function Root() {
     <>
       <div className="sale-message">
         <p>End of Year Sale! Get 25% off.</p>
+        <p>USE CODE "ENDOF2023"</p>
       </div>
       <div className="countdown-container">
         <div className="countdown-timer">

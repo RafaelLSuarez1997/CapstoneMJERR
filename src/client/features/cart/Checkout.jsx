@@ -20,6 +20,12 @@ function Checkout() {
   const [totalAmount, setTotalAmount] = useState(0);
   const [itemDetails, setItemDetails] = useState({});
   const navigate = useNavigate();
+  const [discountCode, setDiscountCode] = useState('');
+  const [discountAmount, setDiscountAmount] = useState(0);
+
+  const handleDiscountCodeChange = (e) => {
+    setDiscountCode(e.target.value);
+  };
 
   const handleShippingChange = (e) => {
     const { name, value } = e.target;
@@ -123,6 +129,20 @@ function Checkout() {
     fetchTotalAmount();
   }, [cartItems]);
 
+  const applyDiscount = async () => {
+    if (discountCode === 'ENDOF2023') {
+      // Assuming the discount code is valid, apply a 25% discount
+      const total = await calculateTotalAmount();
+      const discount = total * 0.25;
+      setDiscountAmount(discount);
+    } else {
+      setDiscountAmount(0);
+    }
+  };
+
+  useEffect(() => {
+    applyDiscount();
+  }, [discountCode, cartItems]);
 
   return (
     <div className="checkout-container">
@@ -176,6 +196,17 @@ function Checkout() {
           </label>
         </form>
       </div>
+      <div className="discount-code">
+        <h2>Discount Code</h2>
+        <label>
+          Enter discount code:
+          <input
+            type="text"
+            value={discountCode}
+            onChange={handleDiscountCodeChange}
+          />
+        </label>
+      </div>
       <div className="order-summary">
         <h2>Order Summary</h2>
         <ul>
@@ -190,14 +221,15 @@ function Checkout() {
                   <p>${itemDetails[itemId].price} |</p>
                   <br />
                 </div>
-              ) : (
-                <p>Item details not available</p>
-              )}
-            </li>
-          ))}
-        </ul>
-        <p>Total Amount: ${totalAmount.toFixed(2)}</p>
-      </div>
+          ) : (
+            <p>Item details not available</p>
+          )}
+        </li>
+      ))}
+    </ul>
+    <p>Total Amount: ${(totalAmount - discountAmount).toFixed(2)}</p>
+    {discountAmount > 0 && <p>Discount: ${discountAmount.toFixed(2)}</p>}
+  </div>
       <div className="action-buttons">
         <Link to="/cart">
           <button>Back to Cart</button>
