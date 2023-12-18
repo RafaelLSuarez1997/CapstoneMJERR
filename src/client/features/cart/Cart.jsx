@@ -46,7 +46,7 @@ function CartItem({ itemId, quantity, size, updateTotalPrice }) {
   };
 
   return (
-    <li key={itemId}>
+    <li className="cartBox" key={itemId}>
       <img className='cartImg' src={item.imageUrl} alt={item.name} />
       <div>
         <div className='cartData'></div>

@@ -29,8 +29,8 @@
 
 /* Image styling */
 .cartImg {
-  width: 100px; /* Adjust as needed */
-  height: auto;
+  width: 150px; /* Adjust as needed */
+  height: 150px;
   margin-right: 20px;
   border-radius: 8px;
 }
@@ -82,4 +82,14 @@
 .cart-footer button {
   padding: 10px 15px;
   margin: 0 10px;
+}
+
+
+.cartBox  {
+  display: flex;
+  flex-direction: row;
+  border: 3px solid #7e7e7e;
+  border-radius: 8px;
+  padding-top: 10px;
+  margin: 5px;
 }
