@@ -1,6 +1,6 @@
 .single-item-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-start;
 
   .item-details {
@@ -47,42 +47,51 @@
   }
 
   .item-image {
-    max-width: 600px;
+    max-width: 700px;
     height: auto; 
-    
   }
 }
 
 .recommended-items {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align items to start to avoid different heights */
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
 
-  h3 {
-    font-size: 24px;
-    margin-bottom: 16px;
+.recommended-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 6px 6px 5px rgba(250, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center items horizontally */
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 200px; /* Fixed width */
+  height: 230px; /* Fixed height */
+  overflow: hidden; /* Hide overflow content */
+  text-align: center;
+
+  img {
+    width: 100%; /* Full width of the container */
+    height: 150px; /* Fixed height */
+    object-fit: cover; /* Cover the area without distorting aspect ratio */
+    border-radius: 9px 9px 0 0; /* Top rounded corners */
   }
 
-  .recommended-item {
-    border: 1px solid #ccc; /* Border around each brand */
-    border-radius: 8px; /* Add some border-radius for rounded corners */
-    box-shadow: 6px 6px 5px  rgba(250, 0, 0, 0.2); /* Example of a shadow */
-    display: inline-block;
-    margin-right: 20px;
-    transition: transform 0.2s ease-in-out;
-
-    img {
-      border: 1px solid #ccc; /* Border around each brand */
-      border-radius: 8px; /* Add some border-radius for rounded corners */
-      max-width: 183.6px;
-      height: auto;
-    }
-
-    p {
-      font-size: 15px;
-      margin-top: 8px;
-      text-align: center;
-      
-    }
+  p {
+    font-size: 15px;
+    margin-top: 8px;
+    color: #333333;
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis to overflowing text */
+    white-space: nowrap; /* No wrap for single line */
   }
 }
+
+
 .popup {
   position: fixed;
   top: 50%;
@@ -93,4 +102,36 @@
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 999;
+}
+
+.recitems {
+  margin-top: 15px;
+  font-size: 25px;
+  padding-left: 100px;
+
+}
+
+@media screen and (max-width: 768px) {
+  .single-item-container {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .item-image {
+    max-width: 100%;
+    margin-bottom: 20px; 
+  }
+
+  .item-details {
+    max-width: 100%; 
+    padding: 20px; 
+  }
+}
+
+@media screen and (max-width: 480px) {
+
+  .recommended-items .recommended-item {
+    width: 150px; 
+    height: 250px; 
+  }
 }

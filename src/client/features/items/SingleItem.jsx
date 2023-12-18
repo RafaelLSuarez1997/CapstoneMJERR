@@ -16,7 +16,7 @@ export default function SingleItem() {
   useEffect(() => {
     if (!isItemLoading && !isAllItemsLoading && currentItem && allItems) {
       const filteredItems = allItems.filter(item => item.id !== currentItem.id);
-      const randomRecommendations = getRandomItems(filteredItems, 5);
+      const randomRecommendations = getRandomItems(filteredItems, 7);
       setRecommendedItems(randomRecommendations);
     }
   }, [isItemLoading, isAllItemsLoading, currentItem, allItems]);
@@ -71,8 +71,8 @@ export default function SingleItem() {
         </div>
       )}
       </div>
+      <h3 className="recitems">Recommended Items:</h3>
       <div className="recommended-items">
-        <h3>Recommended Items:</h3>
         {recommendedItems.map((item) => (
           <Link key={item.id} to={`/${item.id}`} className="recommended-item">
             <img src={item.imageUrl} alt={item.brand} />
