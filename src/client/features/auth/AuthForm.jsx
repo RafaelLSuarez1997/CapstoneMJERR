@@ -42,7 +42,7 @@ export default function AuthForm() {
       console.error(err);
     }
   };
-
+ 
   return (
     <div className="auth-form-container">
       <h1>{authAction}</h1>
